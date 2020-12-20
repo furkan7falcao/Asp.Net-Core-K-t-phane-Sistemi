@@ -1,0 +1,9 @@
+C:\Users\furka\source\repos\Library\Library.Entities\bin\Debug\netcoreapp3.1\Library.Entities.deps.json
+C:\Users\furka\source\repos\Library\Library.Entities\bin\Debug\netcoreapp3.1\Library.Entities.dll
+C:\Users\furka\source\repos\Library\Library.Entities\bin\Debug\netcoreapp3.1\Library.Entities.pdb
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.csprojAssemblyReference.cache
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.AssemblyInfoInputs.cache
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.AssemblyInfo.cs
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.csproj.CoreCompileInputs.cache
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.dll
+C:\Users\furka\source\repos\Library\Library.Entities\obj\Debug\netcoreapp3.1\Library.Entities.pdb

@@ -15,4 +15,12 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.1\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.1\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\furka\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\furka\.nuget\packages\microsoft.entityframeworkcore.tools\5.0.1</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\furka\.nuget\packages\entityframework\6.1.0</PkgEntityFramework>
+  </PropertyGroup>
 </Project>
