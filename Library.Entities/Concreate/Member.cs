@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Library.Entities.Concreate
 {
-    public class Member: IdentityUser<int>
+    public class Member: IdentityUser<int>,ITable
     {
         public string FullName { get; set; }
         public DateTime BirthYear { get; set; }

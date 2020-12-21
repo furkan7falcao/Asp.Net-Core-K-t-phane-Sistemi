@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library.DataAccess\Library.DataAccess.csproj" />
+    <Folder Include="DTOs\CommentDtos\" />
   </ItemGroup>
 
 </Project>
