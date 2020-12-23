@@ -1,9 +1,9 @@
 ﻿using Library.Entities.Concreate;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OurProject.LibrarySystem.DataAccess.Concreate.EntityFrameworkCore.Mapping;
+using Library.DataAccess.Concreate.EntityFrameworkCore.Mapping;
 
-namespace OurProject.LibrarySystem.DataAccess.Concreate.EntityFrameworkCore.Context
+namespace Library.DataAccess.Concreate.EntityFrameworkCore.Context
 {
     public class ApplicationDbContext : IdentityDbContext<Member, Role, int>
     {

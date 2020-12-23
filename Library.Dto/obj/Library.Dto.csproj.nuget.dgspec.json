@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\Library.Dto.csproj": {}
+    "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\Library.Dto.csproj": {
+    "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\Library.Dto.csproj",
-        "projectName": "Library.Dto",
-        "projectPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\Library.Dto.csproj",
+        "projectUniqueName": "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj",
+        "projectName": "Library.DTO",
+        "projectPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj",
         "packagesPath": "C:\\Users\\furka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\obj\\",
+        "outputPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\furka\\AppData\\Roaming\\NuGet\\NuGet.Config",

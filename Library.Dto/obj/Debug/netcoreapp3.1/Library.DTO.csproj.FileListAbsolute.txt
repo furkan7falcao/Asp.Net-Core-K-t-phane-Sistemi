@@ -1,0 +1,9 @@
+C:\Users\furka\source\repos\Library\Library.DTO\bin\Debug\netcoreapp3.1\Library.DTO.deps.json
+C:\Users\furka\source\repos\Library\Library.DTO\bin\Debug\netcoreapp3.1\Library.DTO.dll
+C:\Users\furka\source\repos\Library\Library.DTO\bin\Debug\netcoreapp3.1\Library.DTO.pdb
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.csprojAssemblyReference.cache
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.AssemblyInfoInputs.cache
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.AssemblyInfo.cs
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.csproj.CoreCompileInputs.cache
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.dll
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.pdb

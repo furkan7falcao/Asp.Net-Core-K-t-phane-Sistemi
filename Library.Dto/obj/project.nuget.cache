@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EZ4G3+3gmdwZtYj8o/035DAMUP6QDiubgaB+bj9XVTCNSOlYbwMmKcy4ophTRdGugtr8SW2a0Z04oblmpk/nsQ==",
+  "dgSpecHash": "jbpIU6PVLIno7ZWa5b8ZwO9MMgpQAaV8SZAC0uOUXw/2Ve9k2Y2nq+p3D9k26xEDd1wQmhl21DXGjtfJtfdArQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\furka\\source\\repos\\Library\\Library.Dto\\Library.Dto.csproj",
+  "projectFilePath": "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,0 +1,61 @@
+﻿@model MemberListDto
+
+@{
+    string active = string.Empty;
+
+    if (TempData["Active"] != null)
+    {
+        active = TempData["Active"].ToString();
+    }
+}
+
+<div class="border-right" id="sidebar-wrapper">
+
+    <div class="align-items-center">
+        <img src="/img/@Model.Picture" alt="@Model.FullName" class="w-75 img-thumbnail" style="height:10rem!important" />
+    </div>
+
+    <hr />
+
+    <div class="list-group list-group-flush">
+
+        <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action
+           @(active == "anasayfa"? "active":"")">
+            <i class="fas fa-home"></i>
+            Anasayfa
+        </a>
+
+        <a asp-action="Index" asp-controller="Borrowing" class="list-group-item list-group-item-action
+           @(active == "borrowing"? "active":"")">
+            <i class="fas fa-arrow-alt-circle-down"></i>
+            Ödünç Alma İşlemleri
+        </a>
+
+        <a asp-action="Index" asp-controller="CurrentBooks" class="list-group-item list-group-item-action
+           @(active == "currentbooks"? "active":"")">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+            Mevcut Kitaplar
+        </a>
+
+        <a asp-action="Index" asp-controller="CurrentBooks" class="list-group-item list-group-item-action
+           @(active == "readbooks"? "active":"")">
+            <i class="fas fa-arrow-alt-circle-up"></i>
+            Okunan Kitaplar
+        </a>
+
+        <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action
+            @(active == "profil"? "active":"")">
+            <i class="fas fa-user-circle"></i>
+            Profilim
+
+        </a>
+
+
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-sign-out-alt"></i>
+            Çıkış Yap
+        </a>
+
+
+    </div>
+</div>

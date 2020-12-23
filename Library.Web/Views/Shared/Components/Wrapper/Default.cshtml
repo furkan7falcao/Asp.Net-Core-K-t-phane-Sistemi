@@ -1,0 +1,72 @@
+﻿@model MemberListDto
+
+@{
+    string active = string.Empty;
+
+    if (TempData["Active"] != null)
+    {
+        active = TempData["Active"].ToString();
+    }
+}
+
+<div class="border-right" id="sidebar-wrapper">
+
+    <div class="align-items-center" style="height:10rem!important;width:50px">
+        <img src="/img/@Model.Picture" alt="@Model.FullName" class="w-75 img-thumbnail" style="height:10rem!important;width:50px" />
+    </div>
+
+    <hr />
+
+    <div class="list-group list-group-flush">
+
+
+        <a asp-action="Index" asp-controller="Home" class="list-group-item list-group-item-action
+           @(active == "home"? "active":"")">
+            <i class="fas fa-home"></i>
+            Anasayfa
+        </a>
+
+        <a asp-action="Index" asp-controller="Author" class="list-group-item list-group-item-action
+           @(active == "author"? "active":"")">
+            <i class="fas fa-feather"></i>
+            Yazar İşlemleri
+        </a>
+
+        <a asp-action="Index" asp-controller="Category" class="list-group-item list-group-item-action
+           @(active == "category"? "active":"")">
+            <i class="fas fa-bookmark"></i>
+            Kategori İşlemleri
+        </a>
+
+        <a asp-action="Index" asp-controller="Book" class="list-group-item list-group-item-action
+           @(active == "book"? "active":"")">
+            <i class="fas fa-book"></i>
+            Kitap İşlemleri
+        </a>
+
+        <a asp-action="Index" asp-controller="Lending" class="list-group-item list-group-item-action
+           @(active == "lending"? "active":"")">
+            <i class="fas fa-handshake"></i>
+            Ödünç Verme İşlemleri
+        </a>
+
+        <a asp-action="Index" asp-controller="Request" class="list-group-item list-group-item-action position-relative
+            @(active == "bildirim"? "active":"")">
+            <i class="fas fa-bell"></i>
+
+            @if (ViewBag.bildirimSayisi > 0)
+            {
+                <sub class="badge badge-success position-absolute"
+                     style="bottom:0.625rem!important;left:1.7rem!important">@ViewBag.bildirimSayisi</sub>
+            }
+
+            Bildirimler
+        </a>
+
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-sign-out-alt"></i>
+            Çıkış Yap
+        </a>
+
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿using Library.DataAccess.Interfaces;
 using Library.Entities.Concreate;
 using Microsoft.EntityFrameworkCore;
-using OurProject.LibrarySystem.DataAccess.Concreate.EntityFrameworkCore.Context;
+using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

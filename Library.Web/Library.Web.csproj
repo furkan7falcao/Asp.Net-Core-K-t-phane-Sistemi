@@ -4,4 +4,19 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Business\Library.Business.csproj" />
+    <ProjectReference Include="..\Library.DataAccess\Library.DataAccess.csproj" />
+    <ProjectReference Include="..\Library.DTO\Library.DTO.csproj" />
+    <ProjectReference Include="..\Library.Entities\Library.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
+
 </Project>

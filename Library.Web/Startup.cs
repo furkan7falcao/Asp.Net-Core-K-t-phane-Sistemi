@@ -1,13 +1,14 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Library.Entities.Concreate;
+using Library.Web.CustomValidator;
+using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
 
 namespace Library.Web
 {
@@ -23,15 +24,67 @@ namespace Library.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddMvc();
+
+            services.AddIdentity<Member, Role>(opt =>
+            {
+                opt.Password.RequiredLength = 7;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = true;
+                opt.Password.RequireUppercase = false;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);//10 dk kitle
+                opt.Lockout.MaxFailedAccessAttempts = 3;//max 3 yanlýþ giriþ hakký
+                opt.SignIn.RequireConfirmedEmail = false;
+
+            }).AddPasswordValidator<CustomPasswordValidator>()
+              .AddErrorDescriber<CustomIdentityValidator>()
+              .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "MyCookie";
+                opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                opt.Cookie.HttpOnly = true; // document yazarak cookie'ye ulaþamasýn
+                opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+                opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+                opt.LoginPath = new PathString("/Home/SignIn");
+            });
+
+
+
+            services.AddDbContext<ApplicationDbContext>();
+
+
 
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<Member> userManager, RoleManager<Role> roleManager)
         {
+            if (app is null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
+
+            if (env is null)
+            {
+                throw new ArgumentNullException(nameof(env));
+            }
+
+            if (userManager is null)
+            {
+                throw new ArgumentNullException(nameof(userManager));
+            }
+
+            if (roleManager is null)
+            {
+                throw new ArgumentNullException(nameof(roleManager));
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -42,19 +95,32 @@ namespace Library.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            IdentityInitializer.SeedData(userManager, roleManager).Wait();
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
+                    );
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=SignIn}/{id?}");
             });
         }
+
     }
 }

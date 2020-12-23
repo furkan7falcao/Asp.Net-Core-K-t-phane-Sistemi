@@ -1,0 +1,36 @@
+﻿@model MemberSignInDto
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_StandartLayout.cshtml";
+}
+
+<form class="mx-auto mt-5 p-3 w-50 shadow" method="post">
+
+    <h4>Kullanıcı Giriş Formu</h4>
+
+    <div class="form-group">
+        <label asp-for="UserName">Kullanıcı Adı</label>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Parola</label>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" asp-for="RememberMe" class="form-check-input" />Beni Hatırla
+        <label asp-for="RememberMe" class="form-check-label"></label>
+    </div>
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <a asp-action="SignUp" asp-controller="Home" class="btn btn-sm btn-light">Kaydol</a>
+
+    <input type="submit" class="btn btn-sm btn-info" value="Giriş" />
+
+
+</form>

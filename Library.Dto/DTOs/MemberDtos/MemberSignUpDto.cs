@@ -1,9 +1,7 @@
-﻿using OurProject.LibrarySystem.DTO.Interfaces;
+﻿using Library.DTO.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace OurProject.LibrarySystem.DTO.DTOs.MemberDtos
+namespace Library.DTO.DTOs.MemberDtos
 {
     public class MemberSignUpDto : IDto
     {

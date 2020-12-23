@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OurProject.LibrarySystem.DataAccess.Concreate.EntityFrameworkCore.Context;
+using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
 
 namespace Library.DataAccess.Migrations
 {

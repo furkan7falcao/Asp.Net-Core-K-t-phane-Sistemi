@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace OurProject.LibrarySystem.DataAccess.Concreate.EntityFrameworkCore.Mapping
+namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
 {
     public class RequestMap : IEntityTypeConfiguration<Request>
     {
