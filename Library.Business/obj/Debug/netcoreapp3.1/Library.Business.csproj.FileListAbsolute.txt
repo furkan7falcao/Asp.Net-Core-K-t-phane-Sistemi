@@ -12,3 +12,5 @@ C:\Users\furka\source\repos\Library\Library.Business\obj\Debug\netcoreapp3.1\Lib
 C:\Users\furka\source\repos\Library\Library.Business\obj\Debug\netcoreapp3.1\Library.Business.csproj.CopyComplete
 C:\Users\furka\source\repos\Library\Library.Business\obj\Debug\netcoreapp3.1\Library.Business.dll
 C:\Users\furka\source\repos\Library\Library.Business\obj\Debug\netcoreapp3.1\Library.Business.pdb
+C:\Users\furka\source\repos\Library\Library.Business\bin\Debug\netcoreapp3.1\Library.DTO.dll
+C:\Users\furka\source\repos\Library\Library.Business\bin\Debug\netcoreapp3.1\Library.DTO.pdb

@@ -46,7 +46,7 @@ namespace Library.Web.Controllers
 
                         if (roles.Contains("Admin"))
                         {
-                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                            return RedirectToAction("Index", "Category", new { area = "Admin" });
                         }
 
                         else

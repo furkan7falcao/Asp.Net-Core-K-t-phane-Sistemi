@@ -1,4 +1,6 @@
 using System;
+using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Library.Entities.Concreate;
 using Library.Web.CustomValidator;
 using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
+using Library.Business.Containers.MicrosoftIOC;
 
 namespace Library.Web
 {
@@ -54,6 +57,9 @@ namespace Library.Web
 
 
             services.AddDbContext<ApplicationDbContext>();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDependency();
+            services.AddControllersWithViews().AddFluentValidation();
 
 
 

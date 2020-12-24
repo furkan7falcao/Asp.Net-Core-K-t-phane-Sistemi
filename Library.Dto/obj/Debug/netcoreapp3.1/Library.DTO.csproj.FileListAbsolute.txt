@@ -7,3 +7,6 @@ C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.
 C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.csproj.CoreCompileInputs.cache
 C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.dll
 C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.pdb
+C:\Users\furka\source\repos\Library\Library.DTO\bin\Debug\netcoreapp3.1\Library.Entities.dll
+C:\Users\furka\source\repos\Library\Library.DTO\bin\Debug\netcoreapp3.1\Library.Entities.pdb
+C:\Users\furka\source\repos\Library\Library.DTO\obj\Debug\netcoreapp3.1\Library.DTO.csproj.CopyComplete

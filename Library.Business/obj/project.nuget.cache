@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "mcWkKMmG67s/zYKHQTe3PtrYm69I1hw+RVATqTSJPefWaUrYquUb1Ao++LDAmwmu0iGW4mlGx1Pu7FCInFPN+A==",
+  "dgSpecHash": "8mTs8foWG1Zxv6cTGb2hJ+7vSw7Q+58B9EPPxDStiaKY1o9qdf99vusPrXEwp4TT0bol418bvDW5jFNgD4zyhQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\furka\\source\\repos\\Library\\Library.Business\\Library.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\furka\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
+    "C:\\Users\\furka\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
     "C:\\Users\\furka\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
     "C:\\Users\\furka\\.nuget\\packages\\microsoft.aspnet.identity.entityframework\\2.2.3\\microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512",
     "C:\\Users\\furka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.1\\microsoft.aspnetcore.cryptography.internal.5.0.1.nupkg.sha512",

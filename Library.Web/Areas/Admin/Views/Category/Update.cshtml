@@ -1,0 +1,56 @@
+﻿@model CategoryUpdateDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="w-75 mx-auto p-3 mt-2" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name">Ana Kategori</label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" type="text" class="form-control" />
+    </div>
+
+    <a asp-action="Add" asp-controller="SubCategory" asp-route-baseCategoryId="@Model.Id" class="btn btn-sm btn-info my-2">Alt Kategori Ekle</a>
+
+
+    <br />
+    <hr />
+    <br />
+
+    <div class="form-group">
+
+        <table class="table table-sm table-hover">
+
+            <thead>
+                <tr>
+                    <th>Alt Kategoriler</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.SubCategories)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <input type="submit" class="btn btn-sm btn-info" value="Güncelle" />
+
+</form>
+
+
+
+
+

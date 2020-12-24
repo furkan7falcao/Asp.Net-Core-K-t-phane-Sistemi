@@ -30,6 +30,9 @@
             "projectReferences": {
               "C:\\Users\\furka\\source\\repos\\Library\\Library.DataAccess\\Library.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.DataAccess\\Library.DataAccess.csproj"
+              },
+              "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj": {
+                "projectPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.DTO\\Library.DTO.csproj"
               }
             }
           }
@@ -43,6 +46,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -169,7 +178,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\furka\\source\\repos\\Library\\Library.Entities\\Library.Entities.csproj": {
+                "projectPath": "C:\\Users\\furka\\source\\repos\\Library\\Library.Entities\\Library.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -313,9 +326,13 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "AutoMapper": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[10.1.1, )"
+              "version": "[8.1.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.3.0, )"
             }
           },
           "imports": [

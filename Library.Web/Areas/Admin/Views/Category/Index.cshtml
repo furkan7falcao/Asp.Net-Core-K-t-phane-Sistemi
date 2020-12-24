@@ -1,0 +1,142 @@
+﻿@model List<CategoryListDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/select.css">
+
+</head>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 mt-3">
+
+            <h3 class="text-center">Ana Kategoriler</h3>
+
+            <div class="select">
+
+                <select name="format" id="dropdown">
+                    @foreach (var baseCategories in Model)
+                    {
+                        <option value="@baseCategories.Id" selected>@baseCategories.Name</option>
+                    }
+
+                </select>
+
+            </div>
+
+            <div class="p-2 mt-4" id="getSubCategories"></div>
+
+        </div>
+
+        <div class="col-md-8 mt-3">
+
+
+            @if (Model.Count > 0)
+            {
+                <a asp-action="Add" asp-controller="Category" class="btn btn-sm btn-info my-2">Yeni Kategori Ekle</a>
+
+                <table class="table table-sm table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Ana Kategori</th>
+                            <th>Alt Kategoriler</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.SubCategories.Count</td>
+                                <td>
+                                    <a asp-action="Update" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-sm btn-info my-2">Düzenle</a>
+                                    <a asp-action="Sil" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-sm btn-warning my-2">Sil</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            }
+            else
+            {
+                <div class="text-center mt-3 p-3">
+                    <p class="lead">
+                        Sistemde Kayıtlı Kategori Bulunamadı
+                    </p>
+                    <a asp-action="Add" asp-controller="Category" class="btn btn-sm btn-info my-2">Kategori Ekle</a>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+@section Javascript{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#dropdown").change(function () {
+
+                let BaseCategoryId = $('#dropdown :selected').val();
+
+                $.ajax({
+                    contentType: "application/json; charset=Utf-8;",
+                    dataType: "json",
+                    type: "Get",
+                    url: "/Admin/SubCategory/GetSubCategoriesOfBaseCategory",
+                    data: { BaseCategoryId: BaseCategoryId },
+                    success: function (getSubcategories) {
+                        let SubcategoriesObject = jQuery.parseJSON(getSubcategories);
+                        let htmlString = `<table class="table table-sm table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Alt Kategori</th>
+                                                            <th>İşlem</th>
+                                                        </tr>
+                                                    </thead>
+                                                <tbody>  `
+
+                        $.each(SubcategoriesObject, (index, value) => {
+                            htmlString += `<tr>
+                                                      <td> ${value.Name} </td>
+                                                      <td>
+                                                            <a href="/Admin/SubCategory/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
+                                                            <a asp-action="Sil" asp-controller="Category"  class="btn btn-sm btn-warning my-2">Sil</a>
+                                                      </td>
+                                                </tr>`
+                        });
+
+                        htmlString += `</tbody> </table>`;
+
+                        $("#getSubCategories").html(htmlString);
+                    }
+
+                });
+
+            });
+        });
+
+    </script>
+}
+
+
+
