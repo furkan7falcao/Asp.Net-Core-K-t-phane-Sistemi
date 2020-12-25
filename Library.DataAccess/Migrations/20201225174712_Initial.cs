@@ -255,6 +255,33 @@ namespace Library.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MemberBook",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    isRead = table.Column<bool>(type: "bit", nullable: false),
+                    MemberId = table.Column<int>(type: "int", nullable: true),
+                    BookId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MemberBook", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MemberBook_AspNetUsers_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MemberBook_Book_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Book",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Request",
                 columns: table => new
                 {
@@ -343,6 +370,18 @@ namespace Library.DataAccess.Migrations
                 column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MemberBook_BookId",
+                table: "MemberBook",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MemberBook_MemberId_BookId",
+                table: "MemberBook",
+                columns: new[] { "MemberId", "BookId" },
+                unique: true,
+                filter: "[MemberId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Request_PosterMemberId",
                 table: "Request",
                 column: "PosterMemberId");
@@ -374,6 +413,9 @@ namespace Library.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "MemberBook");
 
             migrationBuilder.DropTable(
                 name: "Request");

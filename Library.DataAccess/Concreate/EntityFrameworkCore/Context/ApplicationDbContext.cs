@@ -19,6 +19,7 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Context
             builder.ApplyConfiguration(new AuthorMap());
             builder.ApplyConfiguration(new MemberMap());
             builder.ApplyConfiguration(new BookMap());
+            builder.ApplyConfiguration(new MemberBookMap());
             builder.ApplyConfiguration(new CategoryMap());
             builder.ApplyConfiguration(new SubCategoryMap());
             builder.ApplyConfiguration(new RequestMap());
@@ -32,6 +33,8 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Context
         public DbSet<Author> Author { get; set; }
         public DbSet<Request> Request { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
+        public DbSet<MemberBook> MemberBook { get; set; }
+
 
 
     }

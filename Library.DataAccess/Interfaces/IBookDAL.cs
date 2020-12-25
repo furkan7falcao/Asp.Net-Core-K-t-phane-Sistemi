@@ -6,13 +6,18 @@ namespace Library.DataAccess.Interfaces
 {
     public interface IBookDAL : IGenericDAL<Book>
     {
+        Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId);
+        Task AddToMemberBookTableWithoutMemberAsync(MemberBook memberBook);
+        Task<Book> FindByNameAsync(string bookName);
+        Task<MemberBook> GetMemberBookByBookIdAsync(int bookId);
+        Task UpdateMemberBookAsync(MemberBook memberBook);
         Task<List<Book>> GetBooksOfAuthorAsync(int authorId);
-        Task<List<Book>> GetBooksOfMemberWithAllAsync(int memberId);
+        Task<List<MemberBook>> GetBooksOfMemberWithAllAsync(int memberId);
         Task<List<Book>> GetBooksWithAuthorsAsync();
         Task<List<Book>> GetBooksWithSubCategoryIdAsync(int id);
         Task<List<Book>> GetBooksWithBaseCategoryIdAsync(int id);
         Task<Book> GetBooksWithAllByIdAsync(int id);
-        List<Book> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa);
+        List<MemberBook> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa);
 
 
 

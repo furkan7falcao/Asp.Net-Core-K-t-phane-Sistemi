@@ -1,7 +1,7 @@
-﻿using Library.DataAccess.Interfaces;
+﻿using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
+using Library.DataAccess.Interfaces;
 using Library.Entities.Concreate;
 using Microsoft.EntityFrameworkCore;
-using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +11,34 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Repositories
 {
     public class EfBookRepository : EfGenericRepository<Book>, IBookDAL
     {
+        public async Task AddToMemberBookTableWithoutMemberAsync(MemberBook memberBook)
+        {
+            var context = new ApplicationDbContext();
+            await context.MemberBook.AddAsync(memberBook);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<Book> FindByNameAsync(string bookName)
+        {
+            var context = new ApplicationDbContext();
+            return await context.Book.Where(I => I.Name == bookName).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Book>> GetBooksOfAuthorAsync(int authorId)
         {
             var context = new ApplicationDbContext();
             return await context.Book.Include(I => I.Author).Where(I => I.AuthorId == authorId).ToListAsync();
         }
 
-        public async Task<List<Book>> GetBooksOfMemberWithAllAsync(int memberId)
+        public async Task<List<MemberBook>> GetBooksOfMemberWithAllAsync(int memberId)
         {
             var context = new ApplicationDbContext();
-            return await context.Book.Include(I=>I.Requests).Include(I=>I.Author).Include(I=>I.BaseCategory).Include(I => I.SubCategory).Where(I => I.MemberId == memberId).ToListAsync();
+            //return await context.Book.Include(I=>I.Requests).Include(I=>I.Author).Include(I=>I.BaseCategory).Include(I => I.SubCategory).Where(I => I.MemberId == memberId).ToListAsync();
+            return await context.MemberBook.Include(I => I.Book).ThenInclude(I => I.Requests)
+                                            .Include(I => I.Book).ThenInclude(I => I.Author)
+                                            .Include(I => I.Book).ThenInclude(I => I.BaseCategory)
+                                            .Include(I => I.Book).ThenInclude(I => I.SubCategory)
+                                            .Where(I => I.Member.Id == memberId && I.isRead == false).ToListAsync();
         }
 
         public async Task<Book> GetBooksWithAllByIdAsync(int id)
@@ -45,22 +63,26 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Repositories
         {
             var context = new ApplicationDbContext();
             return await context.Book.Include(I => I.SubCategory).Where(I => I.SubCategoryId == SubCategoryId).ToListAsync();
-        }       
+        }
 
-        public List<Book> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
+        public List<MemberBook> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
         {
             var context = new ApplicationDbContext();
 
-            var result = context.Book.Include(I=>I.Author).Include(I=>I.BaseCategory).Include(I=>I.SubCategory).Where(I=>I.MemberId == 1).AsQueryable();
+            var result = context.MemberBook.Include(I => I.Book).ThenInclude(I => I.BaseCategory)
+                                            .Include(I => I.Book).ThenInclude(I => I.SubCategory)
+                                            .Include(I => I.Book).ThenInclude(I => I.Author)
+                                            .Where(I => I.MemberId == null).AsQueryable();
+
 
             toplamSayfa = (int)Math.Ceiling((double)result.Count() / 6);
 
             if (!String.IsNullOrWhiteSpace(aranacakKelime))
             {
-                result = result.Where(I => I.Author.FullName.ToLower().Contains(aranacakKelime.ToLower()) ||
-                    I.Name.ToLower().Contains(aranacakKelime.ToLower()) ||
-                    I.BaseCategory.Name.ToLower().Contains(aranacakKelime.ToLower()) ||
-                    I.SubCategory.Name.ToLower().Contains(aranacakKelime.ToLower()));
+                result = result.Where(I => I.Book.Author.FullName.ToLower().Contains(aranacakKelime.ToLower()) ||
+                    I.Book.Name.ToLower().Contains(aranacakKelime.ToLower()) ||
+                    I.Book.BaseCategory.Name.ToLower().Contains(aranacakKelime.ToLower()) ||
+                    I.Book.SubCategory.Name.ToLower().Contains(aranacakKelime.ToLower()));
 
                 toplamSayfa = (int)Math.Ceiling((double)result.Count() / 6);
             }
@@ -69,6 +91,31 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Repositories
 
             return result.ToList();
         }
+
+        public async Task<MemberBook> GetMemberBookByBookIdAsync(int bookId)
+        {
+            var context = new ApplicationDbContext();
+            return await context.MemberBook.Where(I => I.BookId == bookId).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
+        {
+            var context = new ApplicationDbContext();
+            return await context.MemberBook.Include(I => I.Book).ThenInclude(I => I.Requests)
+                                            .Include(I => I.Book).ThenInclude(I => I.Author)
+                                            .Include(I => I.Book).ThenInclude(I => I.BaseCategory)
+                                            .Include(I => I.Book).ThenInclude(I => I.SubCategory)
+                                            .Where(I => I.Member.Id == memberId && I.isRead == true).ToListAsync();
+        }
+
+        public async Task UpdateMemberBookAsync(MemberBook memberBook)
+        {
+            var context = new ApplicationDbContext();
+            context.Set<MemberBook>().Update(memberBook);
+            await context.SaveChangesAsync();
+        }
+
+
     }
 }
 

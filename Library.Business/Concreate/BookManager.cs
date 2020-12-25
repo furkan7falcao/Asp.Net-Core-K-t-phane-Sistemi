@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Business.Concreate
 {
-    public class BookManager : GenericManager<Book> , IBookService
+    public class BookManager : GenericManager<Book>, IBookService
     {
         private readonly IBookDAL _bookDAL;
         public BookManager(IBookDAL bookDAL) : base(bookDAL)
@@ -14,20 +14,35 @@ namespace Library.Business.Concreate
             _bookDAL = bookDAL;
         }
 
+        public async Task AddToMemberBookTableWithoutMemberAsync(MemberBook memberBook)
+        {
+            await _bookDAL.AddToMemberBookTableWithoutMemberAsync(memberBook);
+        }
+
+        public async Task<Book> FindByNameAsync(string bookName)
+        {
+            return await _bookDAL.FindByNameAsync(bookName);
+        }
+
         public async Task<List<Book>> GetBooksOfAuthorAsync(int authorId)
         {
             return await _bookDAL.GetBooksOfAuthorAsync(authorId);
-        }
-
-        public async Task<List<Book>> GetBooksOfMemberWithAllAsync(int memberId)
-        {
-            return await _bookDAL.GetBooksOfMemberWithAllAsync(memberId);
         }
 
         public async Task<Book> GetBooksWithAllByIdAsync(int id)
         {
             return await _bookDAL.GetBooksWithAllByIdAsync(id);
         }
+
+        public async Task<List<MemberBook>> GetBooksOfMemberWithAllAsync(int memberId)
+        {
+            return await _bookDAL.GetBooksOfMemberWithAllAsync(memberId);
+        }
+
+        //public async Task<Book> GetBooksWithAllByIdAsync(int id)
+        //{
+        //    return await _bookDAL.GetBooksWithAllByIdAsync(id);
+        //}
 
         public async Task<List<Book>> GetBooksWithAuthorsAsync()
         {
@@ -44,9 +59,24 @@ namespace Library.Business.Concreate
             return await _bookDAL.GetBooksWithSubCategoryIdAsync(id);
         }
 
-        public List<Book> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
+        public List<MemberBook> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
         {
             return _bookDAL.GetIndexPageBooks(out toplamSayfa, aranacakKelime, aktifSayfa);
+        }
+
+        public async Task<MemberBook> GetMemberBookByBookIdAsync(int bookId)
+        {
+            return await _bookDAL.GetMemberBookByBookIdAsync(bookId);
+        }
+
+        public async Task UpdateMemberBookAsync(MemberBook memberBook)
+        {
+            await _bookDAL.UpdateMemberBookAsync(memberBook);
+        }
+
+        public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
+        {
+            return await _bookDAL.GetReadBooksOfMemberAsync(memberId);
         }
     }
 }
