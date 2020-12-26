@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="row mt-3">
+
+
+    <div class="col-md-6">
+        <div class="card text-white bg-primary mb-3 text-center">
+
+            <div class="card-body">
+                <h4 class="card-title">Okuduğunuz kitap sayısı</h4>
+
+                @if (ViewBag.readBookCount > 0)
+                {
+                    <p class="card-text display-4">@ViewBag.readBookCount</p>
+                    <p class="">
+                        <a asp-action="Index" asp-controller="ReadBooks" class="btn btn-light btn-sm"><i class="fas fa-chevron-circle-right"></i>İncele</a>
+                    </p>
+                }
+                else
+                {
+                    <p class="card-text lead">Henüz bir kitap okumadınız.</p>
+                }
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="col-md-6">
+        <div class="card text-white bg-primary mb-3 text-center">
+
+            <div class="card-body">
+                <h4 class="card-title">Mevcut Kitap sayısı</h4>
+
+                @if (ViewBag.currentBookCount > 0)
+                {
+                    <p class="card-text display-4">@ViewBag.currentBookCount</p>
+                    <p class="">
+                        <a asp-action="Index" asp-controller="CurrentBooks" class="btn btn-light btn-sm"><i class="fas fa-chevron-circle-right"></i>İncele</a>
+                    </p>
+                }
+                else
+                {
+                    <p class="card-text lead">Henüz bir kitaba sahip değilsiniz.</p>
+                }
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

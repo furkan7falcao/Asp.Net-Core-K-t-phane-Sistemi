@@ -1,0 +1,81 @@
+﻿@model BookListWithAllDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+            <img src="~/img/@Model.Picture" class="card-img img-thumbnail shadow" style="height:15rem!important;" alt="@Model.Name">
+        </div>
+
+        <div class="col-md-8">
+
+
+            <table class="table table-bordered table-hover table-sm">
+                <tbody>
+                    <tr>
+                        <td colspan="2" align="center" class="info"><b>Bilgiler</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Ad</b></td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td><b>Sayfa Sayısı</b></td>
+                        <td>@Model.PageNumber</td>
+                    </tr>
+                    <tr>
+                        <td><b>Kaç Adet Mevcut</b></td>
+                        <td>@Model.Count</td>
+                    </tr>
+                    <tr>
+                        <td><b>Yayınlanma Tarihi</b></td>
+                        <td>@Model.PublishedTime</td>
+                    </tr>
+                    <tr>
+                        <td><b>Alt Kategori</b></td>
+                        <td>@Model.BaseCategory.Name</td>
+                    </tr>
+                    <tr>
+                        <td><b>Alt Kategori</b></td>
+                        <td>@Model.SubCategory.Name</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>@*1. Row bitişi*@
+
+    <hr />
+
+    <div class="row mt-4">
+
+        <div class="col-md-12">
+            <p class="text-center">@Model.Name</p>
+            <p>@Model.LongDescription</p>
+        </div>
+
+    </div>@*2. Row bitişi*@
+
+    <hr />
+
+    <div class="text-center">
+        <form action="/Member/Borrowing/SelectedBook"  method="post">
+            <button type="submit" class="btn btn-lg btn-secondary" name="bookId" value="@Model.Id">Ödünç Al</button>
+        </form>
+        
+    </div>
+
+
+
+</div>@*Container bitişi*@
+
+

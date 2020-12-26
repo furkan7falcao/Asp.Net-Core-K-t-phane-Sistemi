@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+    string s = (string)ViewBag.aranan;
+}
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/css/Cards.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+    <div class="col-md-12 my-2">
+
+        @if (!String.IsNullOrWhiteSpace(s))
+        {
+            <div class="border border-dark p-3 mb-2">
+                <strong>
+                    @s
+                </strong> kelimesi için sonuçları görüyorsunuz.
+                <a asp-action="Index" asp-controller="Borrowing" class="float-right">Filtreyi kaldır</a>
+            </div>
+        }
+
+        <form method="get" asp-action="Index" asp-controller="Borrowing" class="text-right">
+            <input type="text" name="s" class="form-control-sm border border-primary border-top-0 border-right-0 border-left-0" />
+            <button type="submit" class="btn btn-sm btn-primary">Ara</button>
+        </form>
+
+    </div>
+
+
+
+
+    <section id="team">
+        <div class="container">
+            <h6 class="section-title h1">Kitaplarımız</h6>
+            <div class="row">
+
+
+                @foreach (var book in (List<BookListWithAuthorDto>)ViewBag.Books)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="image-flip">
+                            <div class="mainflip flip-0">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="~/img/@book.Picture" alt="card image"></p>
+                                            <h4 class="card-title">@book.Name</h4>
+                                            <p class="card-text">Yazar : @book.Author.FullName</p>
+                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">@book.Name</h4>
+                                            <p class="card-text">@book.ShortDescription</p>
+                                            <ul class="list-inline">
+
+                                                <li class="list-inline-item">
+                                                    <a asp-action="SelectedBook" asp-controller="Borrowing" asp-route-bookId="@book.Id" class="btn btn-sm btn-info">
+                                                        İncele
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+
+
+            <nav aria-label="Page navigation example">
+
+                <ul class="pagination">
+
+                    @if (!String.IsNullOrWhiteSpace(s))
+                    {
+                        @for (int i = 1; i <= ViewBag.toplamSayfa; i++)
+                        {
+                            <li class="page-item" @(ViewBag.aktifSayfa == i ? "active" : "")>
+                                <a class="page-link" asp-action="Index" asp-controller="Borrowing"
+                                   asp-route-page="@i" asp-route-s="@s">@i</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        @for (int i = 1; i <= ViewBag.toplamSayfa; i++)
+                        {
+                            <li class="page-item" @(ViewBag.aktifSayfa == i ? "active" : "")>
+                                <a class="page-link" asp-action="Index" asp-controller="Borrowing"
+                                   asp-route-page="@i">@i</a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </nav>
+
+
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+

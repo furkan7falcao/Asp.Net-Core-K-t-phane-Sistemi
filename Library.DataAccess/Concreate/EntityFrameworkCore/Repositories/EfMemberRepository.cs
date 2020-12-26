@@ -1,35 +1,24 @@
-﻿using Library.DataAccess.Interfaces;
+﻿using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
+using Library.DataAccess.Interfaces;
 using Library.Entities.Concreate;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.DataAccess.Concreate.EntityFrameworkCore.Repositories
 {
     public class EfMemberRepository : EfGenericRepository<Member>, IMemberDAL
     {
-        //public async Task<Member> GetMemberOfNotificationAsync(Request notification)
-        //{
-        //    var context = new ApplicationDbContext();
+        public async Task<int> GetCurrentBookCountAsync(int memberId)
+        {
+            var context = new ApplicationDbContext();
+            return await context.MemberBook.Where(I => I.Member.Id == memberId && I.isRead == false).CountAsync();
+        }
 
-        //    var result = context.Users.Join(context.UserRoles, user => user.Id, userRole => userRole.UserId, (resultUser, resultUserRole) => new
-        //    {
-        //        user = resultUser,
-        //        userRole = resultUserRole
-        //    })
-        //    .Join(context.Roles, twoTableResult => twoTableResult.userRole.RoleId, role => role.Id, (resultTable, resultRole) => new
-        //    {
-        //        user = resultTable.user,
-        //        userRoles = resultTable.userRole,
-        //        roles = resultRole
-        //    }).Where(I => I.roles.Name == "Member").Select(I => new Member()
-        //    {
-        //        Id = I.user.Id,
-        //        FullName = I.user.FullName,
-        //        UserName = I.user.UserName,
-        //        Picture = I.user.Picture,
-        //        Email = I.user.Email
-        //    });
-
-        //    return await result.Where(I => I.Id == notification.PosterMemberId).FirstOrDefaultAsync();
-
-        //}
+        public async Task<int> GetReadBookCountAsync(int memberId)
+        {
+            var context = new ApplicationDbContext();
+            return await context.MemberBook.Where(I => I.Member.Id == memberId && I.isRead == true).CountAsync();
+        }
     }
 }

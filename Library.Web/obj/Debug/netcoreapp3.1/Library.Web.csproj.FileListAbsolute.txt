@@ -108,3 +108,6 @@ C:\Users\furka\source\repos\Library\Library.Web\bin\Debug\netcoreapp3.1\FluentVa
 C:\Users\furka\source\repos\Library\Library.Web\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Library.Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Borrowing\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Borrowing\SelectedBook.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Home\Index.cshtml.g.cs
