@@ -1,0 +1,128 @@
+﻿@model BookAddDto
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="w-75 mx-auto p-3" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="Name">Ad</label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PageNumber">Sayfa Sayısı</label>
+        <span asp-validation-for="PageNumber" class="text-danger"></span>
+        <input asp-for="PageNumber" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShortDescription">Kısa Açıklama</label>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+        <input asp-for="ShortDescription" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LongDescription">Uzun Açıklama</label>
+        <span asp-validation-for="LongDescription" class="text-danger"></span>
+        <input asp-for="LongDescription" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PublishedTime">Yayınlanma Yılı</label>
+        <span asp-validation-for="PublishedTime" class="text-danger"></span>
+        <input asp-for="PublishedTime" type="date" id="birthyear" name="BirthYear" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Count">Kaç Adet Mevcut</label>
+        <span asp-validation-for="Count" class="text-danger"></span>
+        <input asp-for="Count" type="number" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Picture">Görsel</label>
+        <span asp-validation-for="Picture" class="text-danger"></span>
+        <input asp-for="Picture" type="file" class="form-control-file float-right" name="Picture" id="Picture" />
+    </div>
+
+    <div class="form-group mt-2">
+        <label>Yazar Seçiniz</label>
+        <span asp-validation-for="AuthorId" class="text-danger"></span>
+        <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.Authors">
+            <option hidden value="-1">Seçiniz</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label>Ana Kategori Seçiniz</label>
+        <span asp-validation-for="BaseCategoryId" class="text-danger"></span>
+        <select id="BaseCategorydrp" asp-for="BaseCategoryId" class="form-control" asp-items="ViewBag.BaseCategories">
+            <option hidden value="-1">Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Alt Kategori Seçiniz</label>
+        <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+        <select asp-for="SubCategoryId" id="SubCategorydrp" name="SubCategorydrp" class="form-control"></select>
+    </div>
+
+
+    <input type="submit" class="btn btn-sm btn-info" value="Ekle" />
+
+</form>
+
+
+@section Javascript{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#BaseCategorydrp').change(function () {
+                var BaseCategoryId = $("#BaseCategorydrp option:selected").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/SubCategory/GetSubCategoriesOfBaseCategory",
+
+                    beforeSend: function () {
+                        $('#SubCategorydrp').empty();
+
+                        s = '<option value="' + -1 + '">' + "Alt Kategori Seçiniz.." + '</option>';
+                        $("#SubCategorydrp").append(s);
+                    },
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { BaseCategoryId: BaseCategoryId },
+
+                    success: function (response) {
+                        let SubcategoriesObject = jQuery.parseJSON(response);
+
+                        $.each(SubcategoriesObject, function (index, value) {
+
+                            s = '<option value="' + value.Id + '">' + value.Name + '</option>';
+                            $("#SubCategorydrp").append(s);
+
+                        });
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+
+   
+        });
+
+    </script>
+}
+
+

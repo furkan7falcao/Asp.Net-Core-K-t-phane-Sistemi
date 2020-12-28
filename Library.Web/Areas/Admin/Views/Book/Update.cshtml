@@ -1,0 +1,62 @@
+﻿@model BookUpdateDto
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form id="Addform" class="w-75 mx-auto p-3" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="Name">Ad</label>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input asp-for="Name" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PageNumber">Sayfa Sayısı</label>
+        <span asp-validation-for="PageNumber" class="text-danger"></span>
+        <input asp-for="PageNumber" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PublishedTime">Yayınlanma Yılı</label>
+        <span asp-validation-for="PublishedTime" class="text-danger"></span>
+        <input asp-for="PublishedTime" type="date" id="birthyear" name="BirthYear" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShortDescription">Yayınlanma Yılı</label>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+        <input asp-for="ShortDescription" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LongDescription">Yayınlanma Yılı</label>
+        <span asp-validation-for="LongDescription" class="text-danger"></span>
+        <input asp-for="LongDescription" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Count">Kaç Adet Mevcut</label>
+        <span asp-validation-for="Count" class="text-danger"></span>
+        <input asp-for="Count" type="number" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Picture">Görsel</label>
+        <span asp-validation-for="Picture" class="text-danger"></span>
+        <input asp-for="Picture" type="file" class="form-control-file float-right" name="Picture" id="Picture" />
+    </div>
+
+    <br />
+
+
+    <a asp-action="Index" asp-controller="Book" class="btn btn-sm btn-warning">Vazgeç</a>
+
+    <input id="Sendbtn" type="submit" class="btn btn-sm btn-info mt-2" value="Güncelle" />
+
+
+
+</form>
+

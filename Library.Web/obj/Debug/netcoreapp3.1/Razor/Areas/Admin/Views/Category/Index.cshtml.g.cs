@@ -33,8 +33,36 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\furka\source\repos\Library\Library.Web\Areas\Admin\Views\_ViewImports.cshtml"
+using Library.DTO.DTOs.AuthorDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\furka\source\repos\Library\Library.Web\Areas\Admin\Views\_ViewImports.cshtml"
+using Library.DTO.DTOs.BookDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\furka\source\repos\Library\Library.Web\Areas\Admin\Views\_ViewImports.cshtml"
+using Library.DTO.DTOs.LendingDtos;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\furka\source\repos\Library\Library.Web\Areas\Admin\Views\_ViewImports.cshtml"
+using Library.DTO.DTOs.RequestDtos;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"242f55ee419170d7ba7dc0ebca4570d8aec0bc11", @"/Areas/Admin/Views/Category/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fc1a41cca8fd70266c2733ad3c4a9dd53872f15e", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"368f19ce7533e05fc4a42b6c829e02eb36b02769", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Category_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<CategoryListDto>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -83,9 +111,9 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc116782", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc117590", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "242f55ee419170d7ba7dc0ebca4570d8aec0bc117044", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "242f55ee419170d7ba7dc0ebca4570d8aec0bc117852", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -121,7 +149,7 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc119515", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1110323", async() => {
 #nullable restore
 #line 25 "C:\Users\furka\source\repos\Library\Library.Web\Areas\Admin\Views\Category\Index.cshtml"
                                                                Write(baseCategories.Name);
@@ -172,7 +200,7 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line hidden
 #nullable disable
             WriteLiteral("                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1112373", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1113182", async() => {
                 WriteLiteral("Yeni Kategori Ekle");
             }
             );
@@ -230,7 +258,7 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1115228", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1116037", async() => {
                 WriteLiteral("Düzenle");
             }
             );
@@ -264,7 +292,7 @@ using Library.DTO.DTOs.SubCategoryDtos;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1117760", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1118569", async() => {
                 WriteLiteral("Sil");
             }
             );
@@ -317,7 +345,7 @@ using Library.DTO.DTOs.SubCategoryDtos;
 #line hidden
 #nullable disable
             WriteLiteral("                <div class=\"text-center mt-3 p-3\">\r\n                    <p class=\"lead\">\r\n                        Sistemde Kayıtlı Kategori Bulunamadı\r\n                    </p>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1121082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "242f55ee419170d7ba7dc0ebca4570d8aec0bc1121891", async() => {
                 WriteLiteral("Kategori Ekle");
             }
             );

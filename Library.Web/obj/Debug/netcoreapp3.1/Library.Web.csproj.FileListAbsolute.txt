@@ -111,3 +111,13 @@ C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Ar
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Borrowing\Index.cshtml.g.cs
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Borrowing\SelectedBook.cshtml.g.cs
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Home\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Author\Add.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Author\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Author\Update.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Add.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Update.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Lending\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Request\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\CurrentBooks\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Profile\Index.cshtml.g.cs

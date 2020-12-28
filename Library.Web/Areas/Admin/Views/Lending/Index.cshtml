@@ -1,0 +1,141 @@
+﻿@model List<LendingListDto>
+
+
+@{
+    ViewData["Title"] = "GorevlendirPersonel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@if (Model.Count > 0)
+{
+    @foreach (var request in Model)
+    {
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="card mb-3 p-2 ">
+
+                    <div class="card-header">
+                        <h4 class="lead text-center pt-2">Personel Bilgileri</h4>
+                    </div>
+
+                    <div class="row no-gutters">
+
+                        <div class="col-md-4">
+                            <img src="~/img/@request.WantedBook.Picture" class="card-img img-thumbnail shadow" style="height:10rem!important;" alt="@request.WantedBook.Name">
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">@request.WantedBook.Name</h5>
+
+                                <p class="card-text">
+                                    <small class="text-muted">@request.WantedBook.PageNumber</small>
+                                </p>
+
+                                <p class="card-text"><small class="text-muted">@request.WantedBook.PublishedTime</small></p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <div class="col-md-6">
+
+                <div class="card mb-3 p-2 ">
+
+                    <div class="card-header">
+                        <h4 class="lead text-center pt-2">Personel Bilgileri</h4>
+                    </div>
+
+                    <div class="row no-gutters">
+
+                        <div class="col-md-4">
+                            <img src="~/img/@request.PosterMember.Picture" class="card-img img-thumbnail shadow" style="height:10rem!important;" alt="@request.PosterMember.FullName">
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">@request.PosterMember.FullName</h5>
+
+                                <p class="card-text">
+                                    <small class="text-muted">@request.PosterMember.PhoneNumber</small>
+                                </p>
+
+                                <p class="card-text"><small class="text-muted">@request.PosterMember.Email</small></p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col-md-12">
+
+                <form asp-action="Index" asp-controller="Lending" method="post">
+
+                    <p class="lead">
+                        Yukarıdaki Kitap İlgili Üyeye Ödünç Verilecektir.Bu İşlemi Gerçekleştirmek İstediğinizden Emin Misiniz?
+                    </p>
+
+                    <div class="form-group text-center">
+
+                        <a asp-action="Index" asp-controller="Lending" class="btn btn-warning">Vazgeç</a>
+
+                        <input type="hidden" name="RequestId" value="@request.Id" />
+
+                        <input type="hidden" name="PosterMemberId" value="@request.PosterMember.Id" />
+
+                        <input type="hidden" name="WantedBookId" value="@request.WantedBook.Id" />
+
+                        <button type="submit" class="btn btn-success">Onayla</button>
+
+                    </div>
+
+
+
+                </form>
+
+            </div>
+
+
+
+        </div>
+    }
+}
+else
+{
+    <div class="text-center mt-3 p-3">
+        <p class="lead">
+            Okunmamış İstek bulunmamaktadır.
+        </p>
+    </div>
+}
+
+
+
+

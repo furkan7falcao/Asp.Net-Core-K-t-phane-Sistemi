@@ -1,0 +1,263 @@
+﻿@model List<BookListDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        @TempData["message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/select.css">
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <h3 class="text-center">Ana Kategori</h3>
+
+                <div class="select">
+                    <select name="baseCategorydrp" id="baseCategorydrp" asp-items="ViewBag.BaseCategories"></select>
+                </div>
+
+
+                <h3 class="text-center">Alt Kategori</h3>
+
+                <div class="select">
+                    <select name="subCategorydrp" id="subCategorydrp"></select>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-8">
+
+                <a asp-action="Add" asp-controller="Book" class="btn btn-sm btn-info my-2">Yeni Kitap Ekle</a>
+
+                <div class="p-2 mt-1" id="getBooks"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="silmeEkrani" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Silmek İstediğinizden Emin Misiniz ?
+            </div>
+            <div class="modal-footer">
+                <button id="btnVazgec" type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                <button id="btnSil" type="button" class="btn btn-primary">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Javascript{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+            $('#baseCategorydrp').change(function () {
+                var BaseCategoryId = $("#baseCategorydrp option:selected").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/SubCategory/GetSubCategoriesOfBaseCategory",
+
+                    beforeSend: function () {
+                        $('#subCategorydrp').empty();
+
+                        s = '<option value="' + -1 + '">' + "Alt Kategori Seçiniz.." + '</option>';
+                        $("#subCategorydrp").append(s);
+
+                        $("#getBooks").empty();
+
+                    },
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { BaseCategoryId: BaseCategoryId },
+
+                    success: function (response) {
+                        let SubcategoriesObject = jQuery.parseJSON(response);
+
+                        $.each(SubcategoriesObject, function (index, value) {
+
+                            s = '<option value="' + value.Id + '">' + value.Name + '</option>';
+                            $("#subCategorydrp").append(s);
+
+                        });
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+
+
+
+
+
+            $('#subCategorydrp').change(function () {
+                var SubCategoryId = $("#subCategorydrp option:selected").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/Book/GetBooksOfSubCategories",
+
+                    beforeSend: function () {
+                        $("#getBooks").empty();
+                    },
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { SubCategoryId: SubCategoryId },
+
+                    success: function (response) {
+                        let SubcategoriesBooksObject = jQuery.parseJSON(response);
+                        let htmlString = `<table class="table table-sm table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Kitap</th>
+                                                                            <th>Sayfa Sayısı</th>
+                                                                            <th>Yayın Yılı</th>
+
+                                                                            <th>İşlem</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                <tbody>  `
+
+                        $.each(SubcategoriesBooksObject, (index, value) => {
+                            htmlString += `<tr>
+                                                                      <td> ${value.Name} </td>
+                                                                       <td> ${value.PageNumber} </td>
+                                                                       <td> ${value.PublishedYear} </td>
+
+                                                                      <td>
+                                                                            <a href="/Admin/Book/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
+                                                                            <a href="/Admin/Book/Delete/${value.Id}" id=${value.Id}  class="btn btn-sm btn-warning my-2">Sil</a>
+                                                                          </td>
+                                                                    </tr>`
+                        });
+
+                        htmlString += `</tbody> </table>`;
+
+                        $("#getBooks").html(htmlString);
+
+                    },
+
+
+                });
+            });
+
+
+
+
+            $('#baseCategorydrp').change(function () {
+                var BaseCategoryId = $("#baseCategorydrp option:selected").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/Book/GetBooksOfBaseCategories",
+
+                    beforeSend: function () {
+                        $("#getBooks").empty();
+                    },
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { BaseCategoryId: BaseCategoryId },
+
+                    success: function (response) {
+                        let BasecategoriesBooksObject = jQuery.parseJSON(response);
+                        let htmlString = `<table class="table table-sm table-hover">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Kitap</th>
+                                                                                <th>Sayfa Sayısı</th>
+                                                                                <th>Yayın Yılı</th>
+
+                                                                                <th>İşlem</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    <tbody>  `
+
+                        $.each(BasecategoriesBooksObject, (index, value) => {
+                            htmlString += `<tr>
+                                                                          <td> ${value.Name} </td>
+                                                                           <td> ${value.PageNumber} </td>
+                                                                           <td> ${value.PublishedYear} </td>
+
+                                                                          <td>
+                                                                                <a href="/Admin/Book/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
+                                                                                <a href="/Admin/Book/Delete/${value.Id}" id=${value.Id}  class="btn btn-sm btn-warning my-2">Sil</a>
+                                                                          </td>
+                                                                    </tr>`
+                        });
+
+                        htmlString += `</tbody> </table>`;
+
+                        $("#getBooks").html(htmlString);
+
+                    },
+                });
+            });
+
+
+
+
+        });
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+

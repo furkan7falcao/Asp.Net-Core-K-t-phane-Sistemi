@@ -1,0 +1,91 @@
+﻿@model List<BookListTakenDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    @foreach (var takenBook in Model)
+    {
+
+        <div class="card my-2">
+
+            <div class="card-header">
+                @takenBook.Name
+            </div>
+
+            <div class="card-body">
+
+                <div class="row no-gutters">
+
+                    <div class="col-md-4">
+                        <img src="~/img/@takenBook.Picture" class="card-img img-thumbnail shadow" style="height:10rem!important;" alt="@takenBook.Name">
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">Adı : @takenBook.Name</h5>
+
+                            <p class="card-text">
+                                <small class="text-muted">Sayfa Sayısı : @takenBook.PageNumber</small>
+                            </p>
+
+                            <p class="card-text">
+                                <small class="text-muted">Yayımlanma Tarihi : @takenBook.PublishedTime</small>
+                            </p>
+
+                            <p class="card-text">
+                                <small class="text-muted">Yazar : @takenBook.Author.FullName</small>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <form asp-action="Index" asp-controller="CurrentBooks" method="post">
+
+                        <p class="text-right float-right">
+
+                            <div class="form-group text-center">
+
+                                <input type="hidden" name="readBookId" value="@takenBook.Id" />
+
+                                <button type="submit" class="btn btn-success">Okundu Olarak İşaretle</button>
+
+                            </div>
+
+                        </p>
+
+                    </form>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-info alert-light p-3 my-1">
+        <p class="lead">
+            Henüz bir kitabınız yok...
+        </p>
+    </div>
+}
+
+
+
+
+
+
+
+
