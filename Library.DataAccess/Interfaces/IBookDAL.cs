@@ -6,6 +6,7 @@ namespace Library.DataAccess.Interfaces
 {
     public interface IBookDAL : IGenericDAL<Book>
     {
+        public List<DualHelper> GetMostReadBook();
         Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId);
         Task AddToMemberBookTableWithoutMemberAsync(MemberBook memberBook);
         Task<Book> FindByNameAsync(string bookName);

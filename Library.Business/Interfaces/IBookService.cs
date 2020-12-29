@@ -6,6 +6,7 @@ namespace Library.Business.Interfaces
 {
     public interface IBookService : IGenericService<Book>
     {
+        public List<DualHelper> GetMostReadBook();
         Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId);
         Task AddToMemberBookTableWithoutMemberAsync(MemberBook memberBook);
         Task<Book> FindByNameAsync(string bookName);

@@ -121,3 +121,4 @@ C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Ar
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Request\Index.cshtml.g.cs
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\CurrentBooks\Index.cshtml.g.cs
 C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Member\Views\Profile\Index.cshtml.g.cs
+C:\Users\furka\source\repos\Library\Library.Web\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs

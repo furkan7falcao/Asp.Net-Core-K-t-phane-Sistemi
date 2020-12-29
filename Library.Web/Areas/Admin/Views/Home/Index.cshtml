@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="piechart_3d_members" style="width: 800px; height: 500px;"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="piechart_3d_books" style="width: 800px; height: 500px;"></div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="piechart_3d_activeMembers" style="width: 900px; height: 500px;margin-left:300px"></div>
+    </div>
+</div>
+
+
+@section Javascript{
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            let enCokKitapOkuyan = [['Üye Adı', 'Okuduğu Kitap Sayısı']]
+
+            $.ajax({
+                type: "Get",
+                url: "/Admin/Home/GetFiveMembersMostReadBook",
+                async: false,
+                success: function (data) {
+                    let gelenObje = jQuery.parseJSON(data);
+                    $.each(gelenObje, (index, value) => {
+                        enCokKitapOkuyan.push([value.Name, value.NumberOfBooks]);
+                    });
+                }
+            });
+
+            var data = google.visualization.arrayToDataTable(enCokKitapOkuyan);
+
+            var options = {
+                title: 'En Çok Kitap Okuyan 5 Üye',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_members'));
+            chart.draw(data, options);
+        }
+
+
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+
+            let enCokOkunanKitap = [['Kitap Adı', 'Okunma Sayısı']]
+
+            $.ajax({
+                type: "Get",
+                url: "/Admin/Home/GetMostReadBook",
+                async: false,
+                success: function (data) {
+                    let gelenObje2 = jQuery.parseJSON(data);
+                    $.each(gelenObje2, (index, value) => {
+                        enCokOkunanKitap.push([value.Name, value.NumberOfBooks]);
+                    });
+                }
+            });
+
+            var data = google.visualization.arrayToDataTable(enCokOkunanKitap);
+
+            var options = {
+                title: 'En Çok Okunan 5 Kitap',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_books'));
+            chart.draw(data, options);
+        }
+
+
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart3);
+        function drawChart3() {
+
+            let enAktifUyeler = [['Üye Adı', 'Kitap Temas Sayısı']]
+
+            $.ajax({
+                type: "Get",
+                url: "/Admin/Home/GetFiveMemberMostActive",
+                async: false,
+                success: function (data) {
+                    let gelenObje3 = jQuery.parseJSON(data);
+                    $.each(gelenObje3, (index, value) => {
+                        enAktifUyeler.push([value.Name, value.NumberOfBooks]);
+                    });
+                }
+            });
+
+            var data = google.visualization.arrayToDataTable(enAktifUyeler);
+
+            var options = {
+                title: 'En Aktif 3 Üye',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_activeMembers'));
+            chart.draw(data, options);
+        }
+    </script>
+
+}

@@ -39,11 +39,7 @@ namespace Library.Business.Concreate
             return await _bookDAL.GetBooksOfMemberWithAllAsync(memberId);
         }
 
-        //public async Task<Book> GetBooksWithAllByIdAsync(int id)
-        //{
-        //    return await _bookDAL.GetBooksWithAllByIdAsync(id);
-        //}
-
+        
         public async Task<List<Book>> GetBooksWithAuthorsAsync()
         {
             return await _bookDAL.GetBooksWithAuthorsAsync();
@@ -77,6 +73,11 @@ namespace Library.Business.Concreate
         public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
         {
             return await _bookDAL.GetReadBooksOfMemberAsync(memberId);
+        }
+
+        public List<DualHelper> GetMostReadBook()
+        {
+            return _bookDAL.GetMostReadBook();
         }
     }
 }

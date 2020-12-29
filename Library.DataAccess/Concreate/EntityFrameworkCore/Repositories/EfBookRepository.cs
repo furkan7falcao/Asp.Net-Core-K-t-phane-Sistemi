@@ -98,6 +98,17 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Repositories
             return await context.MemberBook.Where(I => I.BookId == bookId).FirstOrDefaultAsync();
         }
 
+        public List<DualHelper> GetMostReadBook()
+        {
+            var context = new ApplicationDbContext();
+            return context.MemberBook.Include(I => I.Book).Where(I => I.isRead == true && I.Member != null)
+                .GroupBy(I => I.Book.Name).OrderByDescending(I => I.Count()).Take(3).Select(I => new DualHelper
+                {
+                    Name = I.Key,
+                    NumberOfBooks = I.Count()
+                }).ToList();
+        }
+
         public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
         {
             var context = new ApplicationDbContext();
