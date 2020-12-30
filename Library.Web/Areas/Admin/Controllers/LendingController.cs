@@ -87,7 +87,7 @@ namespace Library.Web.Areas.Admin.Controllers
             db_memberBook.MemberId = Convert.ToInt32(PosterMemberId);
             db_memberBook.isRead = false;
 
-            await _bookService.UpdateMemberBookAsync(db_memberBook);
+            await _bookService.UpdateMemberBookTableAsync(db_memberBook);
             //------------------**********-------------------
 
 

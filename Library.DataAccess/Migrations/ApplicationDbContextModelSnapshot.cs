@@ -30,11 +30,6 @@ namespace Library.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -67,17 +62,10 @@ namespace Library.DataAccess.Migrations
                     b.Property<int>("BaseCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Count")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
-
                     b.Property<string>("LongDescription")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -107,8 +95,6 @@ namespace Library.DataAccess.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("BaseCategoryId");
-
-                    b.HasIndex("MemberId");
 
                     b.HasIndex("SubCategoryId");
 
@@ -230,9 +216,7 @@ namespace Library.DataAccess.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("MemberId", "BookId")
-                        .IsUnique()
-                        .HasFilter("[MemberId] IS NOT NULL");
+                    b.HasIndex("MemberId", "BookId");
 
                     b.ToTable("MemberBook");
                 });
@@ -436,10 +420,6 @@ namespace Library.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Library.Entities.Concreate.Member", "Member")
-                        .WithMany("Books")
-                        .HasForeignKey("MemberId");
-
                     b.HasOne("Library.Entities.Concreate.SubCategory", "SubCategory")
                         .WithMany("Books")
                         .HasForeignKey("SubCategoryId");
@@ -448,21 +428,19 @@ namespace Library.DataAccess.Migrations
 
                     b.Navigation("BaseCategory");
 
-                    b.Navigation("Member");
-
                     b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("Library.Entities.Concreate.MemberBook", b =>
                 {
                     b.HasOne("Library.Entities.Concreate.Book", "Book")
-                        .WithMany()
+                        .WithMany("MemberBooks")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Library.Entities.Concreate.Member", "Member")
-                        .WithMany()
+                        .WithMany("MemberBooks")
                         .HasForeignKey("MemberId");
 
                     b.Navigation("Book");
@@ -558,6 +536,8 @@ namespace Library.DataAccess.Migrations
 
             modelBuilder.Entity("Library.Entities.Concreate.Book", b =>
                 {
+                    b.Navigation("MemberBooks");
+
                     b.Navigation("Requests");
                 });
 
@@ -570,7 +550,7 @@ namespace Library.DataAccess.Migrations
 
             modelBuilder.Entity("Library.Entities.Concreate.Member", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("MemberBooks");
 
                     b.Navigation("Requests");
                 });

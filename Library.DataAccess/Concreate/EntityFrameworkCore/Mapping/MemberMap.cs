@@ -14,7 +14,7 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
             builder.Property(I => I.FullName).HasMaxLength(100).IsRequired();
             builder.Property(I => I.BirthYear).IsRequired();
 
-            builder.HasMany(I => I.Books).WithOne(I => I.Member).HasForeignKey(I => I.MemberId);
+            builder.HasMany(I => I.MemberBooks).WithOne(I => I.Member).HasForeignKey(I => I.MemberId);
             builder.HasMany(I => I.Requests).WithOne(I => I.PosterMember).HasForeignKey(I => I.PosterMemberId);
 
 

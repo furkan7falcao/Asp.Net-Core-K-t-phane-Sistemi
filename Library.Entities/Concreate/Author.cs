@@ -10,7 +10,6 @@ namespace Library.Entities.Concreate
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Nation { get; set; }
-        public string Description { get; set; }
         public DateTime BirthDate { get; set; }
         public string Gender { get; set; }
 

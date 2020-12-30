@@ -11,11 +11,15 @@ namespace Library.DTO.DTOs.BookDtos
         public string LongDescription { get; set; }
         public int PageNumber { get; set; }
         public DateTime PublishedTime { get; set; }
-        public int Count { get; set; }
         public string Picture { get; set; }
 
 
-        
+        public int AuthorId { get; set; }
+        public int BaseCategoryId { get; set; }
+        public int SubCategoryId { get; set; }
+
+
+
 
 
 

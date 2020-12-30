@@ -59,7 +59,6 @@ namespace Library.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Nation = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
@@ -218,22 +217,14 @@ namespace Library.DataAccess.Migrations
                     PublishedTime = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
                     ShortDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     LongDescription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Count = table.Column<int>(type: "int", maxLength: 100, nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BaseCategoryId = table.Column<int>(type: "int", nullable: false),
                     SubCategoryId = table.Column<int>(type: "int", nullable: true),
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
-                    MemberId = table.Column<int>(type: "int", nullable: false)
+                    AuthorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Book", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Book_AspNetUsers_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Book_Author_AuthorId",
                         column: x => x.AuthorId,
@@ -360,11 +351,6 @@ namespace Library.DataAccess.Migrations
                 column: "BaseCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Book_MemberId",
-                table: "Book",
-                column: "MemberId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Book_SubCategoryId",
                 table: "Book",
                 column: "SubCategoryId");
@@ -377,9 +363,7 @@ namespace Library.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_MemberBook_MemberId_BookId",
                 table: "MemberBook",
-                columns: new[] { "MemberId", "BookId" },
-                unique: true,
-                filter: "[MemberId] IS NOT NULL");
+                columns: new[] { "MemberId", "BookId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Request_PosterMemberId",
@@ -424,10 +408,10 @@ namespace Library.DataAccess.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Book");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Book");
 
             migrationBuilder.DropTable(
                 name: "Author");

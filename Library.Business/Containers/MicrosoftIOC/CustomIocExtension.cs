@@ -4,8 +4,11 @@ using Library.Business.Interfaces;
 using Library.Business.ValidationRules.FluentValidation;
 using Library.DataAccess.Concreate.EntityFrameworkCore.Repositories;
 using Library.DataAccess.Interfaces;
+using Library.DTO.DTOs.AuthorDtos;
+using Library.DTO.DTOs.BookDtos;
 using Library.DTO.DTOs.CategoryDtos;
 using Library.DTO.DTOs.MemberDtos;
+using Library.DTO.DTOs.SubCategoryDtos;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.Business.Containers.MicrosoftIOC
@@ -30,10 +33,15 @@ namespace Library.Business.Containers.MicrosoftIOC
             services.AddScoped<ISubCategoryDAL, EfSubCategoryRepository>();
 
 
+            services.AddTransient<IValidator<AuthorUpdateDto>, AuthorUpdateValidator>();
+            services.AddTransient<IValidator<AuthorAddDto>, AuthorAddValidator>();
+            services.AddTransient<IValidator<BookAddDto>, BookAddValidator>();
             services.AddTransient<IValidator<MemberSignUpDto>, MemberSignUpValidator>();
             services.AddTransient<IValidator<MemberSignInDto>, MemberSignInValidator>();
             services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateValidator>();
             services.AddTransient<IValidator<CategoryAddDto>, CategoryAddValidator>();
+            services.AddTransient<IValidator<SubCategoryAddDto>, SubCategoryAddValidator>();
+            services.AddTransient<IValidator<SubCategoryUpdateDto>, SubCategoryUpdateValidator>();
 
 
 

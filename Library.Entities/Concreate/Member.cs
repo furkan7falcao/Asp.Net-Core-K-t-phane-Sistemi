@@ -12,7 +12,7 @@ namespace Library.Entities.Concreate
         public DateTime BirthYear { get; set; }
         public string Picture { get; set; } = "default.png";
 
-        public List<Book> Books { get; set; }
+        public List<MemberBook> MemberBooks { get; set; }
         public List<Request> Requests { get; set; }
     }
 }

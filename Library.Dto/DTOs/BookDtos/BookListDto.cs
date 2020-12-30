@@ -9,9 +9,7 @@ namespace Library.DTO.DTOs.BookDtos
         public string Name { get; set; }
         public int PageNumber { get; set; }
         public string ShortDescription { get; set; }
-
         public DateTime PublishedTime { get; set; }
-        public int Count { get; set; }
         public string Picture { get; set; }
 
 

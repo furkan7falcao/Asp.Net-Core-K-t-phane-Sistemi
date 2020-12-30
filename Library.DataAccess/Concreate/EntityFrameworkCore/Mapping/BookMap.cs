@@ -16,10 +16,9 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
             builder.Property(I => I.ShortDescription).HasMaxLength(500).IsRequired();
             builder.Property(I => I.LongDescription).HasMaxLength(1000).IsRequired();
             builder.Property(I => I.PageNumber).IsRequired();
-            builder.Property(I => I.Count).HasMaxLength(100).IsRequired();
 
             builder.HasOne(I => I.Author).WithMany(I => I.Books).HasForeignKey(I => I.AuthorId);
-            builder.HasOne(I => I.Member).WithMany(I => I.Books).HasForeignKey(I => I.MemberId).IsRequired(false);
+            builder.HasMany(I => I.MemberBooks).WithOne(I => I.Book).HasForeignKey(I => I.BookId);
             builder.HasOne(I => I.BaseCategory).WithMany(I => I.Books).HasForeignKey(I => I.BaseCategoryId);
             builder.HasOne(I => I.SubCategory).WithMany(I => I.Books).HasForeignKey(I => I.SubCategoryId);
             builder.HasMany(I => I.Requests).WithOne(I => I.WantedBook).HasForeignKey(I => I.WantedBookId);

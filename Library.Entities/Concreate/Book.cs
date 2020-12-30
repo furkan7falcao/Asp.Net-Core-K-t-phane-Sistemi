@@ -13,7 +13,6 @@ namespace Library.Entities.Concreate
         public DateTime PublishedTime { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
-        public int Count { get; set; }
         public string Picture { get; set; }
 
 
@@ -26,9 +25,8 @@ namespace Library.Entities.Concreate
         public int AuthorId { get; set; }
         public Author Author { get; set; }
 
-        public int MemberId { get; set; }
-        public Member Member { get; set; }
 
+        public List<MemberBook> MemberBooks { get; set; }
         public List<Request> Requests { get; set; }
 
     }

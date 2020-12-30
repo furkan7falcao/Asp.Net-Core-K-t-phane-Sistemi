@@ -52,8 +52,7 @@ namespace Library.Web.Areas.Member.Controllers
                     PublishedTime = db_takenBook.Book.PublishedTime,
                     PageNumber = db_takenBook.Book.PageNumber,
                     Picture = db_takenBook.Book.Picture,
-                    Requests = db_takenBook.Book.Requests,
-                    Count = db_takenBook.Book.Count
+                    Requests = db_takenBook.Book.Requests
                 };
 
                 takenBookList.Add(takenBook);
@@ -74,7 +73,7 @@ namespace Library.Web.Areas.Member.Controllers
 
             db_memberBook.isRead = true;
 
-            await _bookService.UpdateMemberBookAsync(db_memberBook);
+            await _bookService.UpdateMemberBookTableAsync(db_memberBook);
             //------------------**********-------------------
 
 
@@ -86,7 +85,7 @@ namespace Library.Web.Areas.Member.Controllers
                 isRead = false
             };
 
-            await _bookService.AddToMemberBookTableWithoutMemberAsync(_mapper.Map<MemberBookAddDto, MemberBook>(addedMemberBook));
+            await _bookService.AddMemberBookTableAsync(_mapper.Map<MemberBookAddDto, MemberBook>(addedMemberBook));
             //------------------|||||||||||-------------------
 
 

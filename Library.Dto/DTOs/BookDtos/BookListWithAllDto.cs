@@ -12,7 +12,6 @@ namespace Library.DTO.DTOs.BookDtos
         public string LongDescription { get; set; }
 
         public DateTime PublishedTime { get; set; }
-        public int Count { get; set; }
         public string Picture { get; set; }
 
 

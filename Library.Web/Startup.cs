@@ -61,35 +61,13 @@ namespace Library.Web
             services.AddDependency();
             services.AddControllersWithViews().AddFluentValidation();
 
-
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<Member> userManager, RoleManager<Role> roleManager)
         {
-            if (app is null)
-            {
-                throw new ArgumentNullException(nameof(app));
-            }
-
-            if (env is null)
-            {
-                throw new ArgumentNullException(nameof(env));
-            }
-
-            if (userManager is null)
-            {
-                throw new ArgumentNullException(nameof(userManager));
-            }
-
-            if (roleManager is null)
-            {
-                throw new ArgumentNullException(nameof(roleManager));
-            }
+            
 
             if (env.IsDevelopment())
             {

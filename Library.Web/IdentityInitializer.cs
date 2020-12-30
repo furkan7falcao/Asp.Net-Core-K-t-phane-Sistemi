@@ -21,13 +21,13 @@ namespace Library.Web
                 await roleManager.CreateAsync(new Role { Name = "Member" });
             }
 
-            var adminUser = await userManager.FindByNameAsync("ftektas12");
+            var adminUser = await userManager.FindByNameAsync("b181210049@sakarya.edu.tr");
             if (adminUser == null)
             {
                 Member member = new Member
                 {
                     FullName = "Furkan Tektaş",
-                    UserName = "ftektas12",
+                    UserName = "b181210049@sakarya.edu.tr",
                     Email = "furkan.ndy17@outlook.com",
                     SecurityStamp = Guid.NewGuid().ToString()
                 };

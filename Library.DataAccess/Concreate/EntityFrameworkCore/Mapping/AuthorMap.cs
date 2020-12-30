@@ -13,7 +13,6 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
 
             builder.Property(I => I.FullName).HasMaxLength(100).IsRequired();
             builder.Property(I => I.Nation).HasMaxLength(100).IsRequired();
-            builder.Property(I => I.Description).HasMaxLength(300).IsRequired();
             builder.Property(I => I.BirthDate).HasMaxLength(100);
             builder.Property(I => I.Gender).HasMaxLength(100);
 

@@ -2,7 +2,10 @@
 using Library.DTO.DTOs.AuthorDtos;
 using Library.DTO.DTOs.BookDtos;
 using Library.DTO.DTOs.CategoryDtos;
+using Library.DTO.DTOs.LendingDtos;
+using Library.DTO.DTOs.MemberBookDtos;
 using Library.DTO.DTOs.MemberDtos;
+using Library.DTO.DTOs.RequestDtos;
 using Library.DTO.DTOs.SubCategoryDtos;
 using Library.Entities.Concreate;
 
@@ -36,7 +39,16 @@ namespace Library.Web.Mapping.AutoMapperProfile
             CreateMap<Book, BookAddDto>();
             CreateMap<BookUpdateDto, Book>();
             CreateMap<Book, BookUpdateDto>();
-
+            CreateMap<RequestAddDto, Request>();
+            CreateMap<Request, RequestAddDto>();
+            CreateMap<LendingListDto, Request>();
+            CreateMap<Request, LendingListDto>();
+            CreateMap<BookListTakenDto, Book>();
+            CreateMap<Book, BookListTakenDto>();
+            CreateMap<RequestListDto, Request>();
+            CreateMap<Request, RequestListDto>();
+            CreateMap<MemberBookAddDto, MemberBook>();
+            CreateMap<MemberBook, MemberBookAddDto>();
 
         }
     }

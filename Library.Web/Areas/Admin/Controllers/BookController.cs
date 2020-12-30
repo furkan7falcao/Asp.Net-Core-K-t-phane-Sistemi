@@ -50,7 +50,6 @@ namespace Library.Web.Areas.Admin.Controllers
                 book.Name = db_Book.Name;
                 book.PageNumber = db_Book.PageNumber;
                 book.PublishedTime = db_Book.PublishedTime;
-                book.Count = db_Book.Count;
 
                 BookList.Add(book);
             }
@@ -79,7 +78,6 @@ namespace Library.Web.Areas.Admin.Controllers
                 book.Name = db_Book.Name;
                 book.PageNumber = db_Book.PageNumber;
                 book.PublishedTime = db_Book.PublishedTime;
-                book.Count = db_Book.Count;
 
                 BookList.Add(book);
             }
@@ -110,7 +108,6 @@ namespace Library.Web.Areas.Admin.Controllers
                 book.Name = books.Name;
                 book.PageNumber = books.PageNumber;
                 book.PublishedTime = books.PublishedTime;
-                book.Count = books.Count;
 
                 bookList.Add(book);
             }
@@ -146,7 +143,6 @@ namespace Library.Web.Areas.Admin.Controllers
                     PublishedTime = model.PublishedTime,
                     ShortDescription = model.ShortDescription,
                     LongDescription = model.LongDescription,
-                    Count = model.Count,
                     AuthorId = model.AuthorId,
                     BaseCategoryId = model.BaseCategoryId,
                     SubCategoryId = Convert.ToInt32(SubCategorydrp),
@@ -178,10 +174,10 @@ namespace Library.Web.Areas.Admin.Controllers
                 {
                     BookId = addedBookId,
                     MemberId = null,
-                    isRead = false                   
+                    isRead = false
                 };
 
-                await _bookService.AddToMemberBookTableWithoutMemberAsync(_mapper.Map<MemberBookAddDto,MemberBook>(addedMemberBook));
+                await _bookService.AddMemberBookTableAsync(_mapper.Map<MemberBookAddDto, MemberBook>(addedMemberBook));
 
                 //---------------------------------------------------------------------
 
@@ -208,7 +204,6 @@ namespace Library.Web.Areas.Admin.Controllers
                 ShortDescription = book.ShortDescription,
                 LongDescription = book.LongDescription,
                 PublishedTime = book.PublishedTime,
-                Count = book.Count,
                 Picture = book.Picture
 
             };
@@ -232,8 +227,10 @@ namespace Library.Web.Areas.Admin.Controllers
                     PublishedTime = model.PublishedTime,
                     LongDescription = model.LongDescription,
                     ShortDescription = model.ShortDescription,
-                    Count = model.Count,
-                    Picture = model.Picture
+                    Picture = model.Picture,
+                    AuthorId = (await _bookService.FindByIdAsync(model.Id)).AuthorId,
+                    BaseCategoryId = (await _bookService.FindByIdAsync(model.Id)).BaseCategoryId,
+                    SubCategoryId = (int)(await _bookService.FindByIdAsync(model.Id)).SubCategoryId,
                 };
 
                 await _bookService.UpdateAsync(_mapper.Map<BookUpdateDto, Book>(updatedBook));
@@ -246,11 +243,13 @@ namespace Library.Web.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _bookService.RemoveAsync(new Book { Id = id });
+            await _bookService.RemoveAsync(new Book { Id = id });
 
-            return Json(null);
+            TempData["message"] = "Güncelleme Başarıyla Gerçekleşti";
+
+            return RedirectToAction("Index", "Book");
         }
 
 

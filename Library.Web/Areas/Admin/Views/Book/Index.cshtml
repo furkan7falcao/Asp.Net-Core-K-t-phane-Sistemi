@@ -64,30 +64,6 @@
 
 
 
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="silmeEkrani" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Silmek İstediğinizden Emin Misiniz ?
-            </div>
-            <div class="modal-footer">
-                <button id="btnVazgec" type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
-                <button id="btnSil" type="button" class="btn btn-primary">Sil</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 
 @section Javascript{
     <script type="text/javascript">
@@ -161,7 +137,6 @@
                                                                             <th>Kitap</th>
                                                                             <th>Sayfa Sayısı</th>
                                                                             <th>Yayın Yılı</th>
-
                                                                             <th>İşlem</th>
                                                                         </tr>
                                                                     </thead>
@@ -171,7 +146,7 @@
                             htmlString += `<tr>
                                                                       <td> ${value.Name} </td>
                                                                        <td> ${value.PageNumber} </td>
-                                                                       <td> ${value.PublishedYear} </td>
+                                                                       <td> ${value.PublishedTime} </td>
 
                                                                       <td>
                                                                             <a href="/Admin/Book/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
@@ -215,7 +190,6 @@
                                                                                 <th>Kitap</th>
                                                                                 <th>Sayfa Sayısı</th>
                                                                                 <th>Yayın Yılı</th>
-
                                                                                 <th>İşlem</th>
                                                                             </tr>
                                                                         </thead>
@@ -225,7 +199,7 @@
                             htmlString += `<tr>
                                                                           <td> ${value.Name} </td>
                                                                            <td> ${value.PageNumber} </td>
-                                                                           <td> ${value.PublishedYear} </td>
+                                                                           <td> ${value.PublishedTime} </td>
 
                                                                           <td>
                                                                                 <a href="/Admin/Book/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
@@ -241,8 +215,6 @@
                     },
                 });
             });
-
-
 
 
         });

@@ -60,7 +60,6 @@
                                 <td>@item.SubCategories.Count</td>
                                 <td>
                                     <a asp-action="Update" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-sm btn-info my-2">Düzenle</a>
-                                    <a asp-action="Sil" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-sm btn-warning my-2">Sil</a>
                                 </td>
                             </tr>
                         }
@@ -74,9 +73,9 @@
             {
                 <div class="text-center mt-3 p-3">
                     <p class="lead">
-                        Sistemde Kayıtlı Kategori Bulunamadı
+                        Sistemde Kayıtlı Görev Bulunamadı
                     </p>
-                    <a asp-action="Add" asp-controller="Category" class="btn btn-sm btn-info my-2">Kategori Ekle</a>
+                    <a asp-action="Add" asp-controller="Category" class="btn btn-sm btn-info my-2">Görev Ekle</a>
 
                 </div>
             }
@@ -90,10 +89,18 @@
 
 
 
+
+
+
 @section Javascript{
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+
+
+
+
             $("#dropdown").change(function () {
 
                 let BaseCategoryId = $('#dropdown :selected').val();
@@ -107,22 +114,21 @@
                     success: function (getSubcategories) {
                         let SubcategoriesObject = jQuery.parseJSON(getSubcategories);
                         let htmlString = `<table class="table table-sm table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Alt Kategori</th>
-                                                            <th>İşlem</th>
-                                                        </tr>
-                                                    </thead>
-                                                <tbody>  `
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Alt Kategori</th>
+                                                                    <th>İşlem</th>
+                                                                </tr>
+                                                            </thead>
+                                                        <tbody>  `
 
                         $.each(SubcategoriesObject, (index, value) => {
                             htmlString += `<tr>
-                                                      <td> ${value.Name} </td>
-                                                      <td>
-                                                            <a href="/Admin/SubCategory/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
-                                                            <a asp-action="Sil" asp-controller="Category"  class="btn btn-sm btn-warning my-2">Sil</a>
-                                                      </td>
-                                                </tr>`
+                                                              <td> ${value.Name} </td>
+                                                              <td>
+                                                                    <a href="/Admin/SubCategory/Update/${value.Id}" id=${value.Id} class="btn btn-sm btn-info my-2">Düzenle</a>
+                                                                  </td>
+                                                            </tr>`
                         });
 
                         htmlString += `</tbody> </table>`;
@@ -133,6 +139,10 @@
                 });
 
             });
+
+
+
+
         });
 
     </script>

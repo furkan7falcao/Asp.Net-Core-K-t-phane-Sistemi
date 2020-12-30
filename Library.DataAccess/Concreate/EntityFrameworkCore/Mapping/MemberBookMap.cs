@@ -14,7 +14,7 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
 
             builder.Property(I => I.isRead).IsRequired();
 
-            builder.HasIndex(I => new { I.MemberId, I.BookId }).IsUnique();
+            builder.HasIndex(I => new { I.MemberId, I.BookId }).IsUnique(false);
 
         }
 

@@ -56,7 +56,6 @@ namespace Library.Web.Areas.Member.Controllers
                     PageNumber = db_book.Book.PageNumber,
                     PublishedTime = db_book.Book.PublishedTime,
                     ShortDescription = db_book.Book.ShortDescription,
-                    Count = db_book.Book.Count,
                     Author = db_book.Book.Author,
                     AuthorId = db_book.Book.AuthorId
                 };
@@ -85,7 +84,6 @@ namespace Library.Web.Areas.Member.Controllers
                 PageNumber = db_chosenBook.PageNumber,
                 PublishedTime = db_chosenBook.PublishedTime,
                 LongDescription = db_chosenBook.LongDescription,
-                Count = db_chosenBook.Count,
                 Author = db_chosenBook.Author,
                 AuthorId = db_chosenBook.AuthorId,
                 BaseCategory = db_chosenBook.BaseCategory,
