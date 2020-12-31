@@ -138,6 +138,13 @@ namespace Library.Web.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Exit()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("SignIn");
+        }
+
 
     }
 }

@@ -37,13 +37,13 @@
             Mevcut Kitaplar
         </a>
 
-        <a asp-action="Index" asp-controller="CurrentBooks" class="list-group-item list-group-item-action
+        <a asp-action="Index" asp-controller="ReadBooks" class="list-group-item list-group-item-action
            @(active == "readbooks"? "active":"")">
             <i class="fas fa-arrow-alt-circle-up"></i>
             Okunan Kitaplar
         </a>
 
-        <a asp-action="Index" asp-controller="Profil" class="list-group-item list-group-item-action
+        <a asp-action="Index" asp-controller="Profile" class="list-group-item list-group-item-action
             @(active == "profile"? "active":"")">
             <i class="fas fa-user-circle"></i>
             Profilim
@@ -51,7 +51,7 @@
         </a>
 
 
-        <a href="#" class="list-group-item list-group-item-action">
+        <a asp-area="" asp-action="Exit" asp-controller="Home" class="list-group-item list-group-item-action">
             <i class="fas fa-sign-out-alt"></i>
             Çıkış Yap
         </a>

@@ -247,7 +247,7 @@ namespace Library.Web.Areas.Admin.Controllers
         {
             await _bookService.RemoveAsync(new Book { Id = id });
 
-            TempData["message"] = "Güncelleme Başarıyla Gerçekleşti";
+            TempData["message"] = "Silme Başarıyla Gerçekleşti";
 
             return RedirectToAction("Index", "Book");
         }

@@ -1,0 +1,55 @@
+﻿@model List<BookListWithAuthorDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+
+@if (Model.Count > 0)
+{
+    <table class="table" style="margin-left:100px; margin-right:100px;width: 75% !important;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">İsim</th>
+                <th scope="col">Yazar</th>
+                <th scope="col">Sayfa Sayısı</th>
+                <th scope="col">Yayınlanma Tarihi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var readBook in Model)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@readBook.Name</td>
+                    <td>@readBook.Author.FullName</td>
+                    <td>@readBook.PageNumber</td>
+                    <td>@readBook.PublishedTime</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info alert-light p-3 my-1">
+        <p class="lead">
+            Henüz bir kitap okumadınız.
+        </p>
+    </div>
+}
+
+
+
+
+
+
+
