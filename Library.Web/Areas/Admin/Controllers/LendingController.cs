@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Library.Business.Interfaces;
 using Library.DTO.DTOs.LendingDtos;
+using Library.DTO.DTOs.MemberBookDtos;
 using Library.Entities.Concreate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace Library.Web.Areas.Admin.Controllers
         private readonly IRequestService _requestService;
         private readonly IMapper _mapper;
 
-        public LendingController(IBookService bookService, IMemberService memberService, IRequestService requestService,IMapper mapper)
+        public LendingController(IBookService bookService, IMemberService memberService, IRequestService requestService, IMapper mapper)
         {
             _bookService = bookService;
             _requestService = requestService;
@@ -27,13 +28,13 @@ namespace Library.Web.Areas.Admin.Controllers
             _mapper = mapper;
         }
 
-        
+
         [HttpGet]
         public async Task<IActionResult> Index(LendingListDto model)
         {
             TempData["Active"] = "lending";
 
-            if(model.WantedBookId == 0 || model.PosterMemberId == 0) // tüm istekler  gelecek
+            if (model.WantedBookId == 0 || model.PosterMemberId == 0) // tüm istekler  gelecek
             {
                 var db_unReadRequests = await _requestService.GetAllUnReadRequestsAsync();
 
@@ -57,7 +58,7 @@ namespace Library.Web.Areas.Admin.Controllers
 
             else // bildirimden girilen istek gelecek
             {
-                var request = await _requestService.GetSpecifyUnReadRequestAsync(_mapper.Map<LendingListDto,Request>(model));
+                var request = await _requestService.GetSpecifyUnReadRequestAsync(_mapper.Map<LendingListDto, Request>(model));
 
                 var unReadRequestsList = new List<LendingListDto>();
 
@@ -75,26 +76,37 @@ namespace Library.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string PosterMemberId,string WantedBookId,string RequestId)
+        public async Task<IActionResult> Index(string PosterMemberId, string WantedBookId, string RequestId)
         {
             TempData["Active"] = "lending";
 
             var db_deletedRequest = await _requestService.FindByIdAsync(Convert.ToInt32(RequestId));
 
-            //------------------**********-------------------
-            var db_memberBook = await _bookService.GetMemberBookByBookIdAsync(Convert.ToInt32(WantedBookId));
+            if (String.IsNullOrEmpty(PosterMemberId)) //vazgeç'e tıklandıysa
+            {
+                await _requestService.RemoveAsync(db_deletedRequest);
 
-            db_memberBook.MemberId = Convert.ToInt32(PosterMemberId);
-            db_memberBook.isRead = false;
+                //await _bookService.RemoveMemberBookAsync(db_memberBook);
+            }
+            else
+            {
 
-            await _bookService.UpdateMemberBookTableAsync(db_memberBook);
-            //------------------**********-------------------
+                var memberBook = new MemberBookAddDto
+                {
+                    BookId = Convert.ToInt32(WantedBookId),
+                    MemberId = Convert.ToInt32(PosterMemberId),
+                    isRead = false
+                };
+
+                await _bookService.AddMemberBookTableAsync(_mapper.Map<MemberBookAddDto, MemberBook>(memberBook));
 
 
 
-            await _requestService.RemoveAsync(db_deletedRequest);
 
-            return RedirectToAction("Index","Lending");
+                await _requestService.RemoveAsync(db_deletedRequest);
+            }
+
+            return RedirectToAction("Index", "Lending");
         }
 
 

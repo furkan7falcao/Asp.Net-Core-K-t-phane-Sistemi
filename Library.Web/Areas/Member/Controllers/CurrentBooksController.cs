@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Library.Business.Interfaces;
 using Library.DTO.DTOs.BookDtos;
-using Library.DTO.DTOs.MemberBookDtos;
-using Library.Entities.Concreate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +19,7 @@ namespace Library.Web.Areas.Member.Controllers
         private readonly IRequestService _requestService;
         private readonly IMapper _mapper;
 
-        public CurrentBooksController(IRequestService requestService,UserManager<Entities.Concreate.Member> userManager, IBookService bookService, IMapper mapper)
+        public CurrentBooksController(IRequestService requestService, UserManager<Entities.Concreate.Member> userManager, IBookService bookService, IMapper mapper)
         {
             _userManager = userManager;
             _bookService = bookService;
@@ -52,7 +50,8 @@ namespace Library.Web.Areas.Member.Controllers
                     PublishedTime = db_takenBook.Book.PublishedTime,
                     PageNumber = db_takenBook.Book.PageNumber,
                     Picture = db_takenBook.Book.Picture,
-                    Requests = db_takenBook.Book.Requests
+                    Requests = db_takenBook.Book.Requests,
+                    MemberId = member.Id
                 };
 
                 takenBookList.Add(takenBook);
@@ -64,33 +63,30 @@ namespace Library.Web.Areas.Member.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Index(string readBookId)
+        public async Task<IActionResult> Index(string readBookId, string memberId)
         {
             TempData["Active"] = "currentbooks";
 
-            //------------------**********-------------------
-            var db_memberBook = await _bookService.GetMemberBookByBookIdAsync(Convert.ToInt32(readBookId));
+            var db_readMemberBook = await _bookService.IsReadSameBookBeforeAsync(await _bookService.GetMemberBookByBookIdAsync(Convert.ToInt32(readBookId), Convert.ToInt32(memberId)));
 
-            db_memberBook.isRead = true;
+            var db_recordedMemberBook = await _bookService.GetMemberBookByBookIdAsync(Convert.ToInt32(readBookId), Convert.ToInt32(memberId));
 
-            await _bookService.UpdateMemberBookTableAsync(db_memberBook);
-            //------------------**********-------------------
-
-
-            //------------------|||||||||||-------------------
-            var addedMemberBook = new MemberBookAddDto()
+            if (db_readMemberBook == null)
             {
-                BookId = Convert.ToInt32(readBookId),
-                MemberId = null,
-                isRead = false
-            };
+                db_recordedMemberBook.isRead = true;
 
-            await _bookService.AddMemberBookTableAsync(_mapper.Map<MemberBookAddDto, MemberBook>(addedMemberBook));
-            //------------------|||||||||||-------------------
+                await _bookService.UpdateMemberBookTableAsync(db_recordedMemberBook);
+            }
+
+            else
+            {
+                var db_deletedMemberBook = await _bookService.IsNotReadSameBookBeforeAsync(await _bookService.GetMemberBookByBookIdAsync(Convert.ToInt32(readBookId), Convert.ToInt32(memberId)));
+
+                await _bookService.RemoveMemberBookTableAsync(db_deletedMemberBook);
+            }
 
 
-
-            return RedirectToAction("Index","CurrentBooks");
+            return RedirectToAction("Index", "CurrentBooks");
         }
     }
 }

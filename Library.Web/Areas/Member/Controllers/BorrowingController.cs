@@ -111,7 +111,7 @@ namespace Library.Web.Areas.Member.Controllers
             {
                 WantedBookId = chosenBook.Id,
                 PosterMemberId = member.Id,
-                ReceiverMemberId = 1,//admin id
+                ReceiverMemberId = 8,//admin id
                 Description = $"{member.FullName} isimli üye {chosenBook.Name} isimli kitabı ödünç almak istiyor.",
                 State = true, // okunmamış
             };

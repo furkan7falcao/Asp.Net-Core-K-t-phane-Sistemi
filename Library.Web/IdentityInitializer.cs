@@ -21,20 +21,21 @@ namespace Library.Web
                 await roleManager.CreateAsync(new Role { Name = "Member" });
             }
 
-            var adminUser = await userManager.FindByNameAsync("b181210049@sakarya.edu.tr");
-            if (adminUser == null)
+            var adminUser1 = await userManager.FindByNameAsync("b181210049@sakarya.edu.tr");
+
+            if (adminUser1 == null)
             {
-                Member member = new Member
+                Member admin1 = new Member
                 {
                     FullName = "Furkan Tektaş",
                     UserName = "b181210049@sakarya.edu.tr",
                     Email = "furkan.ndy17@outlook.com",
                     SecurityStamp = Guid.NewGuid().ToString()
-                };
+                };           
 
-                await userManager.CreateAsync(member, "123456!");
+                await userManager.CreateAsync(admin1, "123456!");
 
-                await userManager.AddToRoleAsync(member, "Admin");
+                await userManager.AddToRoleAsync(admin1, "Admin");
             }
 
 

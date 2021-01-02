@@ -7,7 +7,6 @@
 }
 
 
-
 @if (Model.Count > 0)
 {
     @foreach (var request in Model)
@@ -19,7 +18,7 @@
                 <div class="card mb-3 p-2 ">
 
                     <div class="card-header">
-                        <h4 class="lead text-center pt-2">Personel Bilgileri</h4>
+                        <h4 class="lead text-center pt-2">Kitap Bilgileri</h4>
                     </div>
 
                     <div class="row no-gutters">
@@ -35,10 +34,10 @@
                                 <h5 class="card-title">@request.WantedBook.Name</h5>
 
                                 <p class="card-text">
-                                    <small class="text-muted">@request.WantedBook.PageNumber</small>
+                                    <small class="text-muted">Sayfa Sayısı : @request.WantedBook.PageNumber</small>
                                 </p>
 
-                                <p class="card-text"><small class="text-muted">@request.WantedBook.PublishedTime</small></p>
+                                <p class="card-text"><small class="text-muted">Yayınlanma Tarihi : @request.WantedBook.PublishedTime</small></p>
 
                             </div>
 
@@ -49,8 +48,6 @@
                 </div>
 
             </div>
-
-
 
 
 
@@ -76,10 +73,10 @@
                                 <h5 class="card-title">@request.PosterMember.FullName</h5>
 
                                 <p class="card-text">
-                                    <small class="text-muted">@request.PosterMember.PhoneNumber</small>
+                                    <small class="text-muted">Telefon Numarası : @request.PosterMember.PhoneNumber</small>
                                 </p>
 
-                                <p class="card-text"><small class="text-muted">@request.PosterMember.Email</small></p>
+                                <p class="card-text"><small class="text-muted">Email Adresi : @request.PosterMember.Email</small></p>
 
                             </div>
 
@@ -96,15 +93,13 @@
 
             <div class="col-md-12">
 
+                <p class="lead">
+                    Yukarıdaki Kitap İlgili Üyeye Ödünç Verilecektir.Bu İşlemi Gerçekleştirmek İstediğinizden Emin Misiniz?
+                </p>
+
                 <form asp-action="Index" asp-controller="Lending" method="post">
 
-                    <p class="lead">
-                        Yukarıdaki Kitap İlgili Üyeye Ödünç Verilecektir.Bu İşlemi Gerçekleştirmek İstediğinizden Emin Misiniz?
-                    </p>
-
                     <div class="form-group text-center">
-
-                        <a asp-action="Index" asp-controller="Lending" class="btn btn-warning">Vazgeç</a>
 
                         <input type="hidden" name="RequestId" value="@request.Id" />
 
@@ -116,9 +111,26 @@
 
                     </div>
 
+                </form>
 
+
+                <!--------------------------------------------------------------------------------->
+
+
+                <form asp-action="Index" asp-controller="Lending" method="post">
+
+                    <div class="form-group text-center">
+
+                        <input type="hidden" name="RequestId" value="@request.Id" />
+
+                        <input type="hidden" name="WantedBookId" value="@request.WantedBook.Id" />
+
+                        <button type="submit" class="btn btn-success">Vazgeç</button>
+
+                    </div>
 
                 </form>
+
 
             </div>
 

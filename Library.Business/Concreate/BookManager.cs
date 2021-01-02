@@ -14,11 +14,10 @@ namespace Library.Business.Concreate
             _bookDAL = bookDAL;
         }
 
-        public List<DualHelper> GetMostReadBook()
+        public async Task AddMemberBookTableAsync(MemberBook memberBook)
         {
-            return _bookDAL.GetMostReadBook();
+            await _bookDAL.AddMemberBookTableAsync(memberBook);
         }
-
 
         public async Task<Book> FindByNameAsync(string bookName)
         {
@@ -33,6 +32,11 @@ namespace Library.Business.Concreate
         public async Task<Book> GetBooksWithAllByIdAsync(int id)
         {
             return await _bookDAL.GetBooksWithAllByIdAsync(id);
+        }
+
+        public async Task<List<MemberBook>> GetBooksOfMemberWithAllAsync(int memberId)
+        {
+            return await _bookDAL.GetBooksOfMemberWithAllAsync(memberId);
         }
 
         public async Task<List<Book>> GetBooksWithAuthorsAsync()
@@ -50,28 +54,14 @@ namespace Library.Business.Concreate
             return await _bookDAL.GetBooksWithSubCategoryIdAsync(id);
         }
 
-        public async Task<List<MemberBook>> GetBooksOfMemberWithAllAsync(int memberId)
+        public List<MemberBook> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
         {
-            return await _bookDAL.GetBooksOfMemberWithAllAsync(memberId);
-        }      
-       
-        public async Task<MemberBook> GetMemberBookByBookIdAsync(int bookId)
-        {
-            return await _bookDAL.GetMemberBookByBookIdAsync(bookId);
+            return _bookDAL.GetIndexPageBooks(out toplamSayfa, aranacakKelime, aktifSayfa);
         }
 
-        
-
-        public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
+        public async Task<MemberBook> GetMemberBookByBookIdAsync(int bookId, int memberId)
         {
-            return await _bookDAL.GetReadBooksOfMemberAsync(memberId);
-        }
-
-        
-
-        public async Task AddMemberBookTableAsync(MemberBook memberBook)
-        {
-            await _bookDAL.AddMemberBookTableAsync(memberBook);
+            return await _bookDAL.GetMemberBookByBookIdAsync(bookId, memberId);
         }
 
         public async Task UpdateMemberBookTableAsync(MemberBook memberBook)
@@ -79,10 +69,29 @@ namespace Library.Business.Concreate
             await _bookDAL.UpdateMemberBookTableAsync(memberBook);
         }
 
-        public List<MemberBook> GetIndexPageBooks(out int toplamSayfa, string aranacakKelime, int aktifSayfa)
+        public async Task<List<MemberBook>> GetReadBooksOfMemberAsync(int memberId)
         {
-            return _bookDAL.GetIndexPageBooks(out toplamSayfa, aranacakKelime, aktifSayfa);
+            return await _bookDAL.GetReadBooksOfMemberAsync(memberId);
         }
 
+        public List<DualHelper> GetMostReadBook()
+        {
+            return _bookDAL.GetMostReadBook();
+        }
+
+        public async Task RemoveMemberBookTableAsync(MemberBook memberBook)
+        {
+            await _bookDAL.RemoveMemberBookTableAsync(memberBook);
+        }
+
+        public async Task<MemberBook> IsReadSameBookBeforeAsync(MemberBook memberBook)
+        {
+            return await _bookDAL.IsReadSameBookBeforeAsync(memberBook);
+        }
+
+        public async Task<MemberBook> IsNotReadSameBookBeforeAsync(MemberBook memberBook)
+        {
+            return await _bookDAL.IsNotReadSameBookBeforeAsync(memberBook);
+        }
     }
 }

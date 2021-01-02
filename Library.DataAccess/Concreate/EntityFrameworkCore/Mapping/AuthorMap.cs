@@ -17,7 +17,6 @@ namespace Library.DataAccess.Concreate.EntityFrameworkCore.Mapping
             builder.Property(I => I.Gender).HasMaxLength(100);
 
             builder.HasMany(I => I.Books).WithOne(I => I.Author).HasForeignKey(I => I.AuthorId);
-
         }
     }
 }

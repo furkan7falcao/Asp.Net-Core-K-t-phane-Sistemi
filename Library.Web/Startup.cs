@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Library.Entities.Concreate;
-using Library.Web.CustomValidator;
 using Library.DataAccess.Concreate.EntityFrameworkCore.Context;
 using Library.Business.Containers.MicrosoftIOC;
+using Library.Web.CustomValidator;
 
 namespace Library.Web
 {
@@ -40,9 +40,18 @@ namespace Library.Web
                 opt.Lockout.MaxFailedAccessAttempts = 3;//max 3 yanlýþ giriþ hakký
                 opt.SignIn.RequireConfirmedEmail = false;
 
+
+
             }).AddPasswordValidator<CustomPasswordValidator>()
               .AddErrorDescriber<CustomIdentityValidator>()
               .AddEntityFrameworkStores<ApplicationDbContext>();
+                
+                
+                
+              
+                
+
+
 
             services.ConfigureApplicationCookie(opt =>
             {

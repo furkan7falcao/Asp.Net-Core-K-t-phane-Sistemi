@@ -107,7 +107,7 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            TempData["Active"] = "category";
+            TempData["Active"] = "author";
 
             var author = await _authorService.FindByIdAsync(id);
 
@@ -127,7 +127,7 @@ namespace Library.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(AuthorUpdateDto model)
         {
-            TempData["Active"] = "category";
+            TempData["Active"] = "author";
 
             if (ModelState.IsValid)
             {
